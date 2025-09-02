@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unit 01 英検1級 単語テスト（Ex 例文ベース / 120問）</title>
+<style>
+  body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic UI", sans-serif; margin: 24px; line-height: 1.6; }
+  h1 { font-size: 1.5rem; margin-bottom: .25rem; }
+  .sub { color: #555; margin-bottom: 1rem; }
+  .card { border: 1px solid #eee; border-radius: 16px; padding: 16px; margin: 14px 0; box-shadow: 0 1px 6px rgba(0,0,0,.05); }
+  .sentence { font-size: 1.05rem; margin-bottom: 10px;}
+  .options { display: flex; gap: 8px; flex-wrap: wrap; }
+  .btn { padding: 8px 12px; border: 1px solid #ccc; border-radius: 999px; cursor: pointer; background: #fff; }
+  .btn.correct { background: #e6f4ea; border-color: #34a853; }
+  .btn.wrong { background: #fde8e8; border-color: #d93025; }
+  .meta { font-size: .9rem; color: #666; margin-top: 8px; }
+  .hint { display: none; margin-top: 6px; color: #333;}
+  .hint-btn { font-size: .85rem; border: none; background: transparent; color: #2563eb; cursor: pointer; text-decoration: underline; padding: 0; margin-right:10px;}
+  .result { margin-top:8px; font-size:.95rem; }
+  .topbar { display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin-bottom:10px;}
+</style>
+</head>
+<body>
+<h1>Unit 01 英検1級 単語テスト</h1>
+<div class="sub">（クリック式穴埋め・正解は押すまで非表示／全章プールから誤答抽選）</div>
+
+<div class="topbar">
+  <button id="shuffle" class="btn">順番をランダムにする</button>
+  <button id="resetPool" class="btn">誤答プールを初期化</button>
+  <span id="count" class="meta"></span>
+</div>
+
+<div id="app"></div>
+
+<script>
+const items = [{"word": "lucrative", "jp_word": "利益の大きい、もうかる", "sentence": "He decided selling key chains was not a _____ business strategy.", "jp_sentence": "彼は、キーホルダーの販売は利益の大きいビジネス戦略ではないと判断した。"}, {"word": "squander", "jp_word": "（時間・機会・金など）を浪費する", "sentence": "She _____ed all of her savings on overpriced skin treatments.", "jp_sentence": "彼女は高価なスキントリートメントに貯金をすべて浪費した。"}, {"word": "flimsy", "jp_word": "壊れやすい；（話などが）薄っぺらな", "sentence": "He keeps the cleaning supplies in a _____ cardboard box.", "jp_sentence": "彼は薄っぺらな段ボール箱に掃除用品を入れている。"}, {"word": "incision", "jp_word": "切開", "sentence": "The surgeon made an _____ in the chest.", "jp_sentence": "外科医は胸部を切開した。"}, {"word": "lethargic", "jp_word": "けだるい、無気力な", "sentence": "The medicine she takes makes her feel _____.", "jp_sentence": "彼女が服用している薬は彼女をけだるい気分にさせる。"}, {"word": "pinnacle", "jp_word": "（成功・名声などの）頂点、絶頂", "sentence": "Winning the award was the _____ of her career.", "jp_sentence": "その賞を受賞したことが彼女のキャリアの絶頂だった。"}, {"word": "allay", "jp_word": "（恐怖などを）和らげる", "sentence": "He _____ed his anxiety by taking slow, deep breaths.", "jp_sentence": "彼はゆっくりと深呼吸をすることで不安を和らげた。"}, {"word": "feat", "jp_word": "功績、偉業", "sentence": "Swimming across the English Channel is quite the _____.", "jp_sentence": "イギリス海峡を泳いで渡るのはまさに偉業だ。"}, {"word": "ransack", "jp_word": "（場所）をくまなく探す、荒らす", "sentence": "Thieves _____ed the local jewelry store late last night.", "jp_sentence": "昨夜遅く、泥棒が地元の宝石店を荒らした。"}, {"word": "caustic", "jp_word": "（批評が）辛らつな；腐食性の", "sentence": "The woman made _____ remarks about her neighbor’s new haircut.", "jp_sentence": "その女性は隣人の新しい髪型について辛らつな発言をした。"}, {"word": "frivolous", "jp_word": "軽率な、ふまじめな", "sentence": "Her father begged her to stop her _____ spending.", "jp_sentence": "父親は彼女に軽率な浪費をやめるよう懇願した。"}, {"word": "latitude", "jp_word": "自由、裁量；緯度", "sentence": "The students are allowed some _____ in deciding what they study.", "jp_sentence": "学生たちは何を学ぶかについてある程度の裁量が与えられている。"}, {"word": "adept", "jp_word": "熟練して", "sentence": "He is _____ at repairing different kinds of electronics.", "jp_sentence": "彼はさまざまな種類の電子機器の修理に熟練している。"}, {"word": "avid", "jp_word": "熱心な、熱烈な", "sentence": "She is an _____ listener of podcasts about music.", "jp_sentence": "彼女は音楽に関するポッドキャストの熱心なリスナーだ。"}, {"word": "asylum", "jp_word": "亡命、亡命の保護", "sentence": "He was finally granted _____ in Canada after a long wait.", "jp_sentence": "彼は長い時間を待った末に、ようやくカナダでの亡命を認められた。"}, {"word": "placate", "jp_word": "（人）をなだめる", "sentence": "Her manager was able to quickly _____ the angry customer.", "jp_sentence": "彼女の上司は、すぐに怒っている客をなだめることができた。"}, {"word": "pristine", "jp_word": "新品同様の、汚れていない", "sentence": "The collection of antique toys is in _____ condition.", "jp_sentence": "そのアンティークのおもちゃのコレクションは新品同様の状態だ。"}, {"word": "blatantly", "jp_word": "公然と、露骨に", "sentence": "She sued the newspaper for publishing _____ false statements about her.", "jp_sentence": "彼女は、自分に関するあからさまな虚偽の記述を掲載したとして、その新聞社を訴えた。"}, {"word": "attire", "jp_word": "服装、衣装", "sentence": "Applicants are required to wear business _____.", "jp_sentence": "応募者はビジネス用の服装を着用する必要があります。"}, {"word": "offshoot", "jp_word": "派生したもの、分派", "sentence": "The organization developed as an _____ of the local university.", "jp_sentence": "その組織は、地元の大学の分派として発展した。"}, {"word": "gullible", "jp_word": "だまされやすい", "sentence": "He was just joking, but she was so _____ that she believed him.", "jp_sentence": "彼は冗談を言っただけだったが、彼女はとてもだまされやすいので彼の言葉を信じた。"}, {"word": "hindsight", "jp_word": "あと知恵、あとから判断する能力", "sentence": "In _____, I should not have booked this trip in the summer.", "jp_sentence": "あとから考えると、私はこの旅行を夏に予約すべきではなかった。"}, {"word": "ambush", "jp_word": "待ち伏せ、待ち伏せする", "sentence": "The soldiers were killed in an _____.", "jp_sentence": "その兵士たちは待ち伏せによって殺された。"}, {"word": "zenith", "jp_word": "頂点、絶頂", "sentence": "At the _____ of his career, he was interviewing famous celebrities.", "jp_sentence": "キャリアの全盛期には、彼は著名人たちにインタビューしていた。"}, {"word": "prognosis", "jp_word": "予後、（見通し）予測", "sentence": "Despite a serious diagnosis, your _____ is very good.", "jp_sentence": "診断結果は深刻だが、あなたの予後は非常に良好だ。"}, {"word": "meticulous", "jp_word": "細心の注意を払った", "sentence": "She is _____ about how she plans work events.", "jp_sentence": "職場でのイベントをどう計画するかについて、彼女は細心の注意を払っている。"}, {"word": "acrimony", "jp_word": "険悪さ、とげとげしさ", "sentence": "The dormitory’s decision to enforce a curfew caused much _____.", "jp_sentence": "門限を厳守させるという寮の決定によって、非常にとげとげしい雰囲気が生じた。"}, {"word": "propensity", "jp_word": "傾向、性癖", "sentence": "He has always had a _____ for violent behavior.", "jp_sentence": "彼には暴力的な行動をする傾向がずっとある。"}, {"word": "entice", "jp_word": "誘惑する、おびき寄せる", "sentence": "The shop’s creative window displays _____ many customers.", "jp_sentence": "その店の創造的なウィンドウディスプレイは多くの客を惹きつけている。"}, {"word": "alienate", "jp_word": "疎遠にする、疎外する", "sentence": "His arrogance _____d him from his coworkers.", "jp_sentence": "彼は傲慢なために同僚から疎外された。"}, {"word": "exonerate", "jp_word": "（人）の無罪を証明する", "sentence": "She was _____d after new evidence proved her innocence.", "jp_sentence": "新しい証拠によって無実が証明され、彼女は無罪となった。"}, {"word": "clamor", "jp_word": "騒音、叫び、（強い）要求", "sentence": "Nobody in the class could hear the teacher over the _____.", "jp_sentence": "騒然の中、クラスの誰も先生の話が聞こえなかった。"}, {"word": "respite", "jp_word": "小休止、休息", "sentence": "The war continued without _____ for over four years.", "jp_sentence": "戦争は4年以上の間、休むことなく続いた。"}, {"word": "huddle", "jp_word": "身を寄せ合う；集まる", "sentence": "They _____ together for warmth.", "jp_sentence": "彼らは暖を取るために身を寄せ合った。"}, {"word": "figment", "jp_word": "空想、作り事", "sentence": "That episode was just a _____ of her imagination.", "jp_sentence": "そのエピソードは彼女の空想の産物にすぎなかった。"}, {"word": "tenacious", "jp_word": "粘り強い、あきらめない", "sentence": "Her _____ personality allowed her to climb the corporate ladder.", "jp_sentence": "粘り強い性格のおかげで、彼女は出世階段を上っていった。"}, {"word": "extol", "jp_word": "〜を絶賛する，激賞する", "sentence": "He _____led the benefits of yoga to all of his clients.", "jp_sentence": "彼はすべての顧客にヨガのメリットを絶賛した。"}, {"word": "aversion", "jp_word": "嫌悪、反感", "sentence": "The boy has a strong _____ to visiting the dentist.", "jp_sentence": "その男の子は歯医者に行くのが大嫌いだ。"}, {"word": "immaculate", "jp_word": "（場所・衣服などが）清潔な，汚れていない", "sentence": "At such an expensive hotel, guests expect the rooms to be _____.", "jp_sentence": "そのような高級なホテルでは、宿泊客は部屋が清潔であることを期待する。"}, {"word": "gregarious", "jp_word": "社交的な，人づきあいのよい", "sentence": "Unlike her _____ sister, she has a hard time talking to new people.", "jp_sentence": "社交的な姉とは違い、彼女は初対面の人と話すのに苦労している。"}, {"word": "ostracize", "jp_word": "（人）をのけ者にする", "sentence": "She was _____d at work because of her loud personality.", "jp_sentence": "彼女は騒々しい性格のために職場で仲間外れにされた。"}, {"word": "uncouth", "jp_word": "（人・行為などが）無作法な，粗野な", "sentence": "His _____ behavior at the conference shocked everyone there.", "jp_sentence": "会議での彼の無礼な振る舞いは、そこにいた全員に衝撃を与えた。"}, {"word": "salient", "jp_word": "（特徴・事実などが）顕著な，目立った", "sentence": "The teacher quickly reviewed the _____ points of the previous lesson.", "jp_sentence": "先生は前回のレッスンの重要ポイントをさっとおさらいした。"}, {"word": "mayhem", "jp_word": "騒動，大混乱", "sentence": "In the film, animals escape from the zoo and cause all kinds of _____.", "jp_sentence": "その映画の中で、動物たちは動物園から逃げ出し、あらゆる騒動を引き起こす。"}, {"word": "defunct", "jp_word": "現存しない，消滅した", "sentence": "That drug company was founded in 1830, and now is _____.", "jp_sentence": "その製薬会社は1830年に設立されたが、もう存在しない。"}, {"word": "petrify", "jp_word": "（恐怖などで）〜をすくませる", "sentence": "He was _____ied of the idea of getting on an airplane.", "jp_sentence": "飛行機に乗ると考えただけで彼は身がすくんだ。"}, {"word": "invoke", "jp_word": "（法律・権利などを）行使する，発動する", "sentence": "She _____d her right to speak with an attorney.", "jp_sentence": "彼女は弁護士に面会する権利を行使した。"}, {"word": "rebuke", "jp_word": "（人）を強く非難する，叱責する", "sentence": "The minister was _____d after everyone discovered his fraudulent spending.", "jp_sentence": "その大臣は、不正な費遣を皆に見つかり、厳しく非難された。"}, {"word": "accolade", "jp_word": "称賛", "sentence": "The movie director has received many _____s and awards.", "jp_sentence": "その映画監督は多くの称賛と賞を受けてきた。"}, {"word": "solace", "jp_word": "慰め，癒し", "sentence": "He found _____ in art after the passing of his wife.", "jp_sentence": "妻を亡くしたあと、彼は芸術に慰めを見いだした。"}, {"word": "fervent", "jp_word": "熱心な，熱烈な", "sentence": "She has always been a _____ supporter of LGBTQ+ rights.", "jp_sentence": "彼女はずっとLGBTQ+の権利に熱心に支持してきた。"}, {"word": "apathetic", "jp_word": "無関心の，無関心な", "sentence": "Many older people believe the younger generation is _____ about politics.", "jp_sentence": "多くの高齢者は、若い世代が政治に無関心だと考えている。"}, {"word": "catalyst", "jp_word": "触媒；きっかけ", "sentence": "The oil crisis acted as a _____ for searching for ways to save energy.", "jp_sentence": "石油危機は省エネの方法を模索するきっかけとなった。"}, {"word": "wane", "jp_word": "（力・熱意などが）徐々に弱まる，衰える", "sentence": "His enthusiasm for his work started to _____ after so much overtime.", "jp_sentence": "彼の仕事への熱意は、長時間残業のあと衰え始めた。"}, {"word": "clout", "jp_word": "影響力，権威", "sentence": "Her _____ with the association helped her political campaign.", "jp_sentence": "その協会に対する彼女の影響力は、彼女の政治活動を助けた。"}, {"word": "override", "jp_word": "〜を覆す；〜に優先する", "sentence": "The city council _____ the decision taken by the committee.", "jp_sentence": "市議会は委員会が下した決定を覆した。"}, {"word": "secede", "jp_word": "（国から）分離独立する；（組織などから）脱退する", "sentence": "In July of 1776, the American colonies _____d from Great Britain.", "jp_sentence": "1776年7月、アメリカ植民地はイギリスから分離独立した。"}, {"word": "appall", "jp_word": "〜をぞっとさせる，愕然とさせる", "sentence": "He was _____ed by the treatment he received at the clinic.", "jp_sentence": "彼は診療所で受けた待遇にぞっとした。"}, {"word": "debunk", "jp_word": "（偽り・虚構などの）正体を暴露する", "sentence": "There was a TV show that worked to _____ various myths.", "jp_sentence": "さまざまな作り話を暴くことにしたテレビ番組があった。"}, {"word": "vent", "jp_word": "（感情などを）発散する，ぶちまける", "sentence": "She used to _____ her anger by breaking pencils.", "jp_sentence": "彼女はよく鉛筆を折って怒りを発散していた。"}, {"word": "recuperate", "jp_word": "（病気・けがなどから）回復する", "sentence": "The doctor told him he would need a couple of weeks to _____.", "jp_sentence": "医者は彼に、回復には2、3週間要すると言った。"}, {"word": "epitomize", "jp_word": "〜を典型的に表す", "sentence": "The ideal employee will _____ the values of our company.", "jp_sentence": "理想的な従業員は、当社の価値を体現してくれるだろう。"}, {"word": "rift", "jp_word": "仲たがい；裂け目", "sentence": "The _____ between the two sisters has widened recently.", "jp_sentence": "2人の姉妹の間の亀裂は最近広がった。"}, {"word": "divulge", "jp_word": "（秘密など）を漏らす，明らかにする", "sentence": "Lawyers must not _____ confidential client information.", "jp_sentence": "弁護士はクライアントの機密情報を漏らしてはならない。"}, {"word": "dwindle", "jp_word": "徐々に減る，縮小する", "sentence": "The store’s stock of turkeys _____d close to Thanksgiving.", "jp_sentence": "店の七面鳥の在庫は、感謝祭が近づくにつれて少しずつ減った。"}, {"word": "denote", "jp_word": "〜を示す，意味する", "sentence": "The blue lines on this graph _____ company profits.", "jp_sentence": "このグラフの青い線は、会社の利益を示している。"}, {"word": "exodus", "jp_word": "大移動；出ていくこと", "sentence": "The famine caused a mass _____ of refugees.", "jp_sentence": "その飢饉によって、難民の大規模な流出が起きた。"}, {"word": "hereditary", "jp_word": "遺伝性の，遺伝的な", "sentence": "_____ illnesses can be passed down from generation to generation.", "jp_sentence": "遺伝性の病気は、代々受け継がれることがある。"}, {"word": "corroborate", "jp_word": "（意見・事実などを）裏づける，確証する", "sentence": "We need to find evidence to _____ your story.", "jp_sentence": "私たちは、あなたの話を裏づける証拠を見つける必要がある。"}, {"word": "inscrutable", "jp_word": "不可解な，謎めいた", "sentence": "His _____ personality makes him difficult to talk to.", "jp_sentence": "何を考えているかわからない性格のため、彼とは話しづらい。"}, {"word": "emaciated", "jp_word": "やせ衰えた，やせこけた", "sentence": "The shelter takes in _____ animals and helps them recover.", "jp_sentence": "そのシェルターはやせ衰えた動物を受け入れ、回復するのを助けている。"}, {"word": "affront", "jp_word": "（公然の）侮辱，無礼", "sentence": "Her poor attitude was taken as a personal _____ by everyone.", "jp_sentence": "彼女の態度の悪さは、皆から個人的な侮辱として受け止められた。"}, {"word": "fiasco", "jp_word": "（行事・企てなどの）大失敗", "sentence": "After the _____ involving missing money, he was fired.", "jp_sentence": "お金の紛失を伴う大失敗のあと、彼は解雇された。"}, {"word": "aloof", "jp_word": "（気取った感じで）冷淡で，よそよそしくて", "sentence": "She acts _____ and carefree even around her family members.", "jp_sentence": "彼女は家族の前ですら、素っ気なく気楽に振る舞う。"}, {"word": "altruistic", "jp_word": "利他的（善意）な", "sentence": "Donating money is not always as _____ as it may appear.", "jp_sentence": "寄付は見かけほど利他的であるとは限らない。"}, {"word": "quandary", "jp_word": "困惑，葛藤（ジレンマ）", "sentence": "He was in a _____ about where to go on vacation.", "jp_sentence": "彼は休暇にどこへ行こうかと悩んでいた。"}, {"word": "embellish", "jp_word": "（話を）誇張する；（物を）飾る", "sentence": "Although she _____ed the story a little bit, it was mostly true.", "jp_sentence": "彼女は話を少し盛ったが、それはほとんど真実だ。"}, {"word": "renege", "jp_word": "（約束などを）破る，反故にする", "sentence": "You cannot _____ on the promise you made to your mother.", "jp_sentence": "母親とした約束を反故にしてはいけない。"}, {"word": "nudge", "jp_word": "ひじで軽くつつくこと；〜を（ひじで）軽くつつく", "sentence": "I gave her a _____ when she began to nod off.", "jp_sentence": "彼女がうとうとし始めたので、私は彼女を軽く小突いた。"}, {"word": "indoctrinate", "jp_word": "（人）に思想などを吹き込む", "sentence": "Dozens of young people were _____d by the cult.", "jp_sentence": "何十人もの若者がカルト教団に洗脳された。"}, {"word": "remorse", "jp_word": "（過去に対する）後悔，良心の呵責", "sentence": "He showed no _____ for his crimes.", "jp_sentence": "彼には、自分が犯した罪に対する反省の色が見られなかった。"}, {"word": "delude", "jp_word": "（人）を欺く，欺いて〜と思い込ませる", "sentence": "He somehow _____d himself into thinking he was popular in school.", "jp_sentence": "彼はどういうわけか自分が学校で人気があると思い込んだ。"}, {"word": "defuse", "jp_word": "（緊張など）を和らげる", "sentence": "Several leaders tried to _____ the tension between the two countries.", "jp_sentence": "何人かの指導者が両国間の緊張を和らげようとした。"}, {"word": "precarious", "jp_word": "（状況・立場などが）不安定な，危うい", "sentence": "The president is in a _____ situation right now.", "jp_sentence": "大統領はいま、危うい状況にある。"}, {"word": "feign", "jp_word": "〜を装う，ふりをする", "sentence": "The woman _____ed ignorance when asked about the stolen jewelry.", "jp_sentence": "盗まれた宝石について尋ねられると、その女性は知らないふりをした。"}, {"word": "abject", "jp_word": "（状態などが）惨めな，ひどい", "sentence": "She started the organization after meeting people living in _____ poverty.", "jp_sentence": "極度の貧困の中で暮らしている人々に会って、彼女はその組織を発足させた。"}, {"word": "ulterior", "jp_word": "（目的・動機などが）隠された，表に現れてこない", "sentence": "He had an _____ motive when he agreed to the plan.", "jp_sentence": "その計画に同意したとき、彼には裏の動機があった。"}, {"word": "lambaste", "jp_word": "〜を酷評する，こき下ろす", "sentence": "Journalists _____d the government for lying about their welfare policy.", "jp_sentence": "ジャーナリストたちは福祉政策についてうそをついていると政府を非難した。"}, {"word": "commiserate", "jp_word": "同情する，哀れむ", "sentence": "He _____d with his sister about the sudden loss of her job.", "jp_sentence": "彼は、突然仕事を失った姉を気の毒に思った。"}, {"word": "flagrant", "jp_word": "（不正などが）目に余る，極端な", "sentence": "Their actions are a _____ violation of the law.", "jp_sentence": "彼らの行動は甚だしい法違反だ。"}, {"word": "flout", "jp_word": "（慣習・法・規則などを）公然と無視する", "sentence": "The taxi driver who _____ed the law ended up paying a fine.", "jp_sentence": "法を無視したタクシー運転手は罰金を払う羽目になった。"}, {"word": "inculcate", "jp_word": "（思想・価値などを）印象づける，教え込む", "sentence": "Her parents _____d a love of reading in her.", "jp_sentence": "両親は彼女に読書への愛を植え付けた。"}, {"word": "infer", "jp_word": "（根拠の断片などから）推測する，推論する", "sentence": "He _____red from what she said that he would not be promoted.", "jp_sentence": "彼は彼女の話から、自分が昇進しないだろうと推測した。"}, {"word": "emulate", "jp_word": "（偉業・立派なものを）見習う，まねる", "sentence": "She _____d her father by joining the military when she graduated.", "jp_sentence": "彼女は父親に倣って、卒業と同時に軍隊に入隊した。"}, {"word": "alleviate", "jp_word": "（負担・痛みなどを）軽減する", "sentence": "Physiotherapy may help _____ some of your pain.", "jp_sentence": "理学療法は痛みの一部を軽減するのに役立つかもしれない。"}, {"word": "staunch", "jp_word": "誠実な，忠実な", "sentence": "The scholar is a _____ supporter of nuclear power.", "jp_sentence": "その学者は原子力発電の強力な支持者だ。"}, {"word": "disseminate", "jp_word": "（情報・知識などを）広める", "sentence": "The students worked to _____ information about their fundraiser.", "jp_sentence": "生徒たちは募金活動に関する情報を広めるために働いた。"}, {"word": "baffle", "jp_word": "（人）を困惑させる，悩ませる", "sentence": "His children were _____d by his change in behavior.", "jp_sentence": "彼の子どもたちは彼の行動の変化に困惑していた。"}, {"word": "menial", "jp_word": "（仕事などが）技術を要しない，単調な", "sentence": "She does not have the energy to complete even _____ tasks.", "jp_sentence": "彼女には単純作業すらこなす気力がない。"}, {"word": "candid", "jp_word": "率直な，遠慮のない", "sentence": "He received some _____ advice about his job from his wife.", "jp_sentence": "彼は妻から仕事について率直なアドバイスを受けた。"}, {"word": "irate", "jp_word": "激怒した，怒り心頭の", "sentence": "The customer became so _____ that the staff called the police.", "jp_sentence": "客が激怒したので、スタッフは警察に連絡した。"}, {"word": "clique", "jp_word": "徒党，小集団", "sentence": "The soccer players formed a _____ and always hung out together.", "jp_sentence": "サッカー選手たちは徒党を組んで、いつも一緒に行動していた。"}, {"word": "sporadic", "jp_word": "散発的な，不定期に起きる", "sentence": "Scientists expect that _____ outbreaks will continue to occur.", "jp_sentence": "科学者たちは、散発的な流行が引き続き起こると予想している。"}, {"word": "abate", "jp_word": "（風・雨などが）弱まる；（痛みなどが）和らぐ", "sentence": "Public criticism of the mayor’s decision took months to _____.", "jp_sentence": "市長の決定に対する世間の批判は、収まるまで数か月かかった。"}, {"word": "idyllic", "jp_word": "牧歌的な，のどかな", "sentence": "She grew up in an _____ town in the mountains of Italy.", "jp_sentence": "彼女はイタリアの山間にあるのどかな町で育った。"}, {"word": "exquisite", "jp_word": "精巧な，極上の，美しい", "sentence": "From the presentation to the flavors, the meal was _____.", "jp_sentence": "美しい盛り付けから独特にブレンドされた味に至るまで、その料理は素晴らしかった。"}, {"word": "tarnish", "jp_word": "（評判・名誉など）を傷つける；（金属などの）光沢を失わせる", "sentence": "Her reputation was _____ed when people found out she was abusive.", "jp_sentence": "暴力的だということが知られてから、彼女の評判は落ちた。"}, {"word": "vindicate", "jp_word": "（主張・行為などの）正しさを立証する", "sentence": "His strange management style was _____d by his team’s performance.", "jp_sentence": "彼の風変わりな経営スタイルは、部下たちの素晴らしい業績によってその正しさが裏づけられた。"}, {"word": "auspicious", "jp_word": "幸先のよい，吉兆の", "sentence": "It is not really an _____ time to hold a vote.", "jp_sentence": "投票を行うにはあまりよい時期ではない。"}, {"word": "fastidious", "jp_word": "細心の注意を払う，潔癖な", "sentence": "The pastry chef’s _____ attention to detail makes her cakes beautiful.", "jp_sentence": "細部までこだわるので、そのパティシエのケーキは美しい。"}, {"word": "encapsulate", "jp_word": "（意見・事実など）を要約する；〜をカプセルに包む", "sentence": "The book perfectly _____s what it is like to work as a nurse.", "jp_sentence": "看護師として働くとはどういうことかを、その本は端的に要約している。"}, {"word": "deferential", "jp_word": "敬意を表する，丁寧な", "sentence": "She taught her children to be _____ to their teachers.", "jp_sentence": "先生に対して敬意を払うべきだと、彼女は子どもたちに教えた。"}, {"word": "annex", "jp_word": "（国が）（領土・国土など）を併合する，編入する", "sentence": "Nobody did anything to stop that region from being _____ed.", "jp_sentence": "その地域が併合されるのを止めるために誰も何もしなかった。"}, {"word": "pungent", "jp_word": "（におい・味などが）刺激の強い", "sentence": "The _____ smell of sewage made the man gag.", "jp_sentence": "下水の刺激臭に、その男性は吐き気を催した。"}, {"word": "conjecture", "jp_word": "推測，憶測；〜と推測する", "sentence": "Everything that you have said so far has been pure _____.", "jp_sentence": "あなたがこれまでに述べてきたことはすべて、まったくの推測だ。"}, {"word": "muster", "jp_word": "（勇気など）を奮い起こす；（軍などを）召集する", "sentence": "She could not even _____ the energy to brush her teeth.", "jp_sentence": "彼女は歯を磨く気力すら湧かなかった。"}, {"word": "forfeit", "jp_word": "（権利・財産などを）失う，没収される", "sentence": "The team _____ed the game because of a violent act.", "jp_sentence": "そのチームは暴力行為により、試合を没収された。"}, {"word": "murky", "jp_word": "（水が）濁った；見通せない；（話が）曖昧な", "sentence": "The diver could not see anything in the _____ water.", "jp_sentence": "濁った水の中で、ダイバーは何も見えなかった。"}, {"word": "bigotry", "jp_word": "偏執，偏屈な行為（考え）", "sentence": "The writer has frequently been accused of _____.", "jp_sentence": "その作家は偏執な発言でしばしば非難を浴びている。"}, {"word": "augment", "jp_word": "〜を増加［増大］させる", "sentence": "He _____s his income by doing freelance work on the side.", "jp_sentence": "彼は副業としてフリーランスの仕事をすることで収入を増やしている。"}];
+document.getElementById('count').textContent = items.length + ' 問';
+
+// --- Global distractor pool handling ---
+function getPool() {
+  let pool = [];
+  try { pool = JSON.parse(localStorage.getItem('vocabPool') || '[]'); } catch(e) { pool = []; }
+  return Array.from(new Set(pool));
+}
+function setPool(pool) {
+  localStorage.setItem('vocabPool', JSON.stringify(Array.from(new Set(pool))));
+}
+document.getElementById('resetPool').onclick = () => setPool([]);
+
+const thisUnitWords = items.map(x => x.word);
+const pool = Array.from(new Set([...getPool(), ...thisUnitWords]));
+setPool(pool); // persist back
+
+function sampleDistractors(correct, k=3) {
+  const candidates = pool.filter(w => w.toLowerCase() !== correct.toLowerCase());
+  const generic = ['tenure','stature','remedy','parcel','tenet','amenity','levity','sanction','allude','relish','abet','forgo'];
+  const src = candidates.length >= k ? candidates : [...candidates, ...generic];
+  const shuffled = src.sort(() => Math.random() - 0.5);
+  return Array.from(new Set(shuffled)).slice(0,k);
+}
+
+function makeCard(item, idx) {
+  const card = document.createElement('div');
+  card.className = 'card';
+
+  const sentence = document.createElement('div');
+  sentence.className = 'sentence';
+  sentence.innerHTML = (idx+1) + '. ' + item.sentence.replace('_____', '<b>_____</b>');
+  card.appendChild(sentence);
+
+  const options = document.createElement('div');
+  options.className = 'options';
+  const optionsList = [item.word, ...sampleDistractors(item.word, 3)].sort(() => Math.random()-0.5);
+  optionsList.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'btn';
+    btn.textContent = opt;
+    btn.addEventListener('click', () => {
+      const isCorrect = opt.toLowerCase() === item.word.toLowerCase();
+      if (isCorrect) {
+        btn.classList.remove('wrong'); btn.classList.add('correct');
+        sentence.innerHTML = (idx+1) + '. ' + item.sentence.replace('_____', '<b>'+item.word+'</b>');
+        result.textContent = '✅ Correct!';
+      } else {
+        btn.classList.remove('correct'); btn.classList.add('wrong');
+        result.textContent = '❌ Wrong. Try again.';
+      }
+    });
+    options.appendChild(btn);
+  });
+  card.appendChild(options);
+
+  const meta = document.createElement('div');
+  meta.className = 'meta';
+  meta.textContent = '語義: ' + item.jp_word;
+  card.appendChild(meta);
+
+  const hintBtn = document.createElement('button');
+  hintBtn.className = 'hint-btn';
+  hintBtn.textContent = 'Hint（和訳）';
+  const hint = document.createElement('div');
+  hint.className = 'hint';
+  hint.textContent = item.jp_sentence;
+  hintBtn.addEventListener('click', ()=>{
+    hint.style.display = (hint.style.display === 'block') ? 'none' : 'block';
+  });
+  card.appendChild(hintBtn);
+  card.appendChild(hint);
+
+  const result = document.createElement('div');
+  result.className = 'result';
+  card.appendChild(result);
+
+  return card;
+}
+
+const app = document.getElementById('app');
+let order = items.map((_,i)=>i);
+function render() {
+  app.innerHTML='';
+  order.forEach((i,idx) => app.appendChild(makeCard(items[i], idx)));
+}
+render();
+
+document.getElementById('shuffle').onclick = () => {
+  order.sort(() => Math.random()-0.5);
+  render();
+};
+</script>
+</body>
+</html>
