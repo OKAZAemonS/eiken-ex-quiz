@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Unit04 Quiz Q1–120</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
+    .question { margin-bottom: 20px; padding: 10px; border: 1px solid #ccc; border-radius: 8px; }
+    .sentence { font-size: 16px; margin-bottom: 8px; }
+    .options button { margin: 5px; padding: 6px 12px; border-radius: 6px; cursor: pointer; }
+    .correct { background-color: #c8f7c5 !important; }
+    .incorrect { background-color: #f7c5c5 !important; }
+    .translation { display: none; margin-top: 5px; color: #333; font-style: italic; }
+    .controls { margin-bottom: 20px; }
+  </style>
+  <script>
+    let allQuestions = [];
+    function checkAnswer(qId, isCorrect) {
+      const buttons = document.querySelectorAll('#' + qId + ' .options button');
+      buttons.forEach(btn => btn.disabled = true);
+      if (isCorrect) {
+        event.target.classList.add('correct');
+      } else {
+        event.target.classList.add('incorrect');
+      }
+      document.querySelector('#' + qId + ' .translation').style.display = 'block';
+    }
+    function shuffleQuestions() {
+      for (let i = allQuestions.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [allQuestions[i], allQuestions[j]] = [allQuestions[j], allQuestions[i]];
+      }
+      renderQuestions();
+    }
+    function resetQuestions() {
+      allQuestions.sort((a, b) => a.id.localeCompare(b.id));
+      renderQuestions();
+    }
+    function renderQuestions() {
+      const container = document.getElementById('quiz');
+      container.innerHTML = '';
+      allQuestions.forEach(q => container.appendChild(q.elem));
+    }
+    window.onload = () => {
+      allQuestions = Array.from(document.querySelectorAll('.question')).map(q => ({id: q.id, elem: q}));
+    };
+  </script>
+</head>
+<body>
+  <h1>Unit04 Quiz Q1–120</h1>
+  <div class="controls">
+    <button onclick="shuffleQuestions()">順番をランダムにする</button>
+    <button onclick="resetQuestions()">元の順番に戻す</button>
+  </div>
+  <div id="quiz">
+
+  <!-- Q1〜Q20 -->
+  <div class="question" id="Q1">
+    <p class="sentence"><b>Q1.</b> She ____ taxes for years but was eventually caught and charged.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q1', true)">evaded</button>
+      <button onclick="checkAnswer('Q1', false)">benign</button>
+      <button onclick="checkAnswer('Q1', false)">concession</button>
+      <button onclick="checkAnswer('Q1', false)">enlighten</button>
+    </div>
+    <p class="translation">正解: evaded → 彼女は何年も税金を<b>逃れて</b>いたが、ついに捕まり起訴された。</p>
+  </div>
+
+  <div class="question" id="Q2">
+    <p class="sentence"><b>Q2.</b> He had a ____ tumor removed through a minor surgery.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q2', true)">benign</button>
+      <button onclick="checkAnswer('Q2', false)">frigid</button>
+      <button onclick="checkAnswer('Q2', false)">copious</button>
+      <button onclick="checkAnswer('Q2', false)">astute</button>
+    </div>
+    <p class="translation">正解: benign → 彼は<b>良性の</b>腫瘍を小手術で切除した。</p>
+  </div>
+
+  <div class="question" id="Q3">
+    <p class="sentence"><b>Q3.</b> The company agreed to increase vacation days as a _____. </p>
+    <div class="options">
+      <button onclick="checkAnswer('Q3', true)">concession</button>
+      <button onclick="checkAnswer('Q3', false)">kickback</button>
+      <button onclick="checkAnswer('Q3', false)">requisite</button>
+      <button onclick="checkAnswer('Q3', false)">revamp</button>
+    </div>
+    <p class="translation">正解: concession → 会社は<b>譲歩</b>として休暇日数を増やすことに同意した。</p>
+  </div>
+
+  <div class="question" id="Q4">
+    <p class="sentence"><b>Q4.</b> If you know what was decided in the meeting, could you ____ me?</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q4', true)">enlighten</button>
+      <button onclick="checkAnswer('Q4', false)">rebuke</button>
+      <button onclick="checkAnswer('Q4', false)">dissuade</button>
+      <button onclick="checkAnswer('Q4', false)">insinuate</button>
+    </div>
+    <p class="translation">正解: enlighten → 会議で何が決まったのか、私に<b>教えて</b>いただけますか。</p>
+  </div>
+
+  <div class="question" id="Q5">
+    <p class="sentence"><b>Q5.</b> The lack of data ____ us from performing an appropriate analysis.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q5', true)">precluded</button>
+      <button onclick="checkAnswer('Q5', false)">flaunted</button>
+      <button onclick="checkAnswer('Q5', false)">mocked</button>
+      <button onclick="checkAnswer('Q5', false)">clenched</button>
+    </div>
+    <p class="translation">正解: precluded → データ不足が適切な分析を<b>妨げた</b>。</p>
+  </div>
+
+  <div class="question" id="Q6">
+    <p class="sentence"><b>Q6.</b> Luckily, the ship did not sink while sailing through the ____ waters.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q6', true)">treacherous</button>
+      <button onclick="checkAnswer('Q6', false)">meager</button>
+      <button onclick="checkAnswer('Q6', false)">lavish</button>
+      <button onclick="checkAnswer('Q6', false)">copious</button>
+    </div>
+    <p class="translation">正解: treacherous → 幸いにも船は<b>危険な</b>海域を航行中に沈むことはなかった。</p>
+  </div>
+
+  <div class="question" id="Q7">
+    <p class="sentence"><b>Q7.</b> Paparazzi ____ her home after her latest movie was released.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q7', true)">besieged</button>
+      <button onclick="checkAnswer('Q7', false)">retorted</button>
+      <button onclick="checkAnswer('Q7', false)">appraised</button>
+      <button onclick="checkAnswer('Q7', false)">squirmed</button>
+    </div>
+    <p class="translation">正解: besieged → パパラッチが彼女の家を<b>包囲した</b>。</p>
+  </div>
+
+  <div class="question" id="Q8">
+    <p class="sentence"><b>Q8.</b> He has ____ taste when it comes to interior design.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q8', true)">impeccable</button>
+      <button onclick="checkAnswer('Q8', false)">arbitrary</button>
+      <button onclick="checkAnswer('Q8', false)">frivolous</button>
+      <button onclick="checkAnswer('Q8', false)">derelict</button>
+    </div>
+    <p class="translation">正解: impeccable → 彼はインテリアデザインに関して<b>完璧な</b>センスを持っている。</p>
+  </div>
+
+  <div class="question" id="Q9">
+    <p class="sentence"><b>Q9.</b> The actress is always ____ her wealth to everyone.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q9', true)">flaunting</button>
+      <button onclick="checkAnswer('Q9', false)">retaining</button>
+      <button onclick="checkAnswer('Q9', false)">repudiating</button>
+      <button onclick="checkAnswer('Q9', false)">proliferating</button>
+    </div>
+    <p class="translation">正解: flaunting → 女優はいつも自分の富を<b>見せびらかしている</b>。</p>
+  </div>
+
+  <div class="question" id="Q10">
+    <p class="sentence"><b>Q10.</b> The chef decided that the restaurant menu needed to be ____.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q10', true)">revamped</button>
+      <button onclick="checkAnswer('Q10', false)">dissuaded</button>
+      <button onclick="checkAnswer('Q10', false)">squirmed</button>
+      <button onclick="checkAnswer('Q10', false)">botched</button>
+    </div>
+    <p class="translation">正解: revamped → シェフはレストランのメニューを<b>刷新する</b>必要があると判断した。</p>
+  </div>
+
+  <div class="question" id="Q11">
+    <p class="sentence"><b>Q11.</b> He has a ____ in the success of this project.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q11', true)">stake</button>
+      <button onclick="checkAnswer('Q11', false)">omen</button>
+      <button onclick="checkAnswer('Q11', false)">onus</button>
+      <button onclick="checkAnswer('Q11', false)">bane</button>
+    </div>
+    <p class="translation">正解: stake → 彼はこのプロジェクトの成功に<b>利害関係</b>を持っている。</p>
+  </div>
+
+  <div class="question" id="Q12">
+    <p class="sentence"><b>Q12.</b> She won a trip to an ____ resort in Mexico.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q12', true)">opulent</button>
+      <button onclick="checkAnswer('Q12', false)">astute</button>
+      <button onclick="checkAnswer('Q12', false)">cumbersome</button>
+      <button onclick="checkAnswer('Q12', false)">copious</button>
+    </div>
+    <p class="translation">正解: opulent → 彼女はメキシコの<b>豪華な</b>リゾート旅行を獲得した。</p>
+  </div>
+
+  <div class="question" id="Q13">
+    <p class="sentence"><b>Q13.</b> ____ and dangerous conditions prevented the airplane from taking off.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q13', true)">Frigid</button>
+      <button onclick="checkAnswer('Q13', false)">Benign</button>
+      <button onclick="checkAnswer('Q13', false)">Complacent</button>
+      <button onclick="checkAnswer('Q13', false)">Lavish</button>
+    </div>
+    <p class="translation">正解: Frigid → <b>極寒の</b>危険な条件により飛行機は離陸できなかった。</p>
+  </div>
+
+  <div class="question" id="Q14">
+    <p class="sentence"><b>Q14.</b> The government imposed an arms ____ temporarily.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q14', true)">embargo</button>
+      <button onclick="checkAnswer('Q14', false)">reprisal</button>
+      <button onclick="checkAnswer('Q14', false)">imposition</button>
+      <button onclick="checkAnswer('Q14', false)">purge</button>
+    </div>
+    <p class="translation">正解: embargo → 政府は武器の<b>輸出入禁止</b>を一時的に課した。</p>
+  </div>
+
+  <div class="question" id="Q15">
+    <p class="sentence"><b>Q15.</b> The app makes it possible to ____ the background of a photo.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q15', true)">blur</button>
+      <button onclick="checkAnswer('Q15', false)">squirm</button>
+      <button onclick="checkAnswer('Q15', false)">mock</button>
+      <button onclick="checkAnswer('Q15', false)">stake</button>
+    </div>
+    <p class="translation">正解: blur → アプリを使えば写真の背景を<b>ぼかす</b>ことができる。</p>
+  </div>
+
+  <div class="question" id="Q16">
+    <p class="sentence"><b>Q16.</b> Everyone in town ____ the lack of a local gas station.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q16', true)">bemoans</button>
+      <button onclick="checkAnswer('Q16', false)">rebukes</button>
+      <button onclick="checkAnswer('Q16', false)">derides</button>
+      <button onclick="checkAnswer('Q16', false)">banters</button>
+    </div>
+    <p class="translation">正解: bemoans → 町の人々は地元にガソリンスタンドがないことを<b>嘆いている</b>。</p>
+  </div>
+
+  <div class="question" id="Q17">
+    <p class="sentence"><b>Q17.</b> Negotiations between the two companies reached an ____ this morning.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q17', true)">impasse</button>
+      <button onclick="checkAnswer('Q17', false)">levity</button>
+      <button onclick="checkAnswer('Q17', false)">labyrinth</button>
+      <button onclick="checkAnswer('Q17', false)">onus</button>
+    </div>
+    <p class="translation">正解: impasse → 両社の交渉は今朝<b>行き詰まり</b>に達した。</p>
+  </div>
+
+  <div class="question" id="Q18">
+    <p class="sentence"><b>Q18.</b> It is hard to be ____ once you become a celebrity.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q18', true)">inconspicuous</button>
+      <button onclick="checkAnswer('Q18', false)">dogmatic</button>
+      <button onclick="checkAnswer('Q18', false)">astute</button>
+      <button onclick="checkAnswer('Q18', false)">lavish</button>
+    </div>
+    <p class="translation">正解: inconspicuous → 有名人になると<b>目立たない</b>ことは難しい。</p>
+  </div>
+
+  <div class="question" id="Q19">
+    <p class="sentence"><b>Q19.</b> The city introduced a project to restore ____ buildings.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q19', true)">derelict</button>
+      <button onclick="checkAnswer('Q19', false)">cumbersome</button>
+      <button onclick="checkAnswer('Q19', false)">benign</button>
+      <button onclick="checkAnswer('Q19', false)">lavish</button>
+    </div>
+    <p class="translation">正解: derelict → 市は<b>荒廃した</b>建物を修復する事業を導入した。</p>
+  </div>
+
+  <div class="question" id="Q20">
+    <p class="sentence"><b>Q20.</b> He uses his ____ income to support a family of four.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q20', true)">meager</button>
+      <button onclick="checkAnswer('Q20', false)">lavish</button>
+      <button onclick="checkAnswer('Q20', false)">copious</button>
+      <button onclick="checkAnswer('Q20', false)">boisterous</button>
+    </div>
+    <p class="translation">正解: meager → 彼は<b>わずかな</b>収入で4人家族を養っている。</p>
+  </div>
+
+  <div class="question" id="Q21">
+    <p class="sentence"><b>Q21.</b> Protesters ____ the plan to build a new pipeline.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q21', true)">decried</button>
+      <button onclick="checkAnswer('Q21', false)">appraised</button>
+      <button onclick="checkAnswer('Q21', false)">insinuated</button>
+      <button onclick="checkAnswer('Q21', false)">exhorted</button>
+    </div>
+    <p class="translation">正解: decried → 抗議者たちは新しいパイプライン建設計画を<b>非難した</b>。</p>
+  </div>
+
+  <div class="question" id="Q22">
+    <p class="sentence"><b>Q22.</b> The first doctor ____ her cosmetic surgery, and she had to get it fixed.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q22', true)">botched</button>
+      <button onclick="checkAnswer('Q22', false)">retorted</button>
+      <button onclick="checkAnswer('Q22', false)">swindled</button>
+      <button onclick="checkAnswer('Q22', false)">blurred</button>
+    </div>
+    <p class="translation">正解: botched → 最初の医者が彼女の美容手術を<b>しくじり</b>、修正する必要があった。</p>
+  </div>
+
+  <div class="question" id="Q23">
+    <p class="sentence"><b>Q23.</b> I always have a ____ of hay fever in early spring.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q23', true)">bout</button>
+      <button onclick="checkAnswer('Q23', false)">bane</button>
+      <button onclick="checkAnswer('Q23', false)">onus</button>
+      <button onclick="checkAnswer('Q23', false)">omen</button>
+    </div>
+    <p class="translation">正解: bout → 私は早春にいつも花粉症の<b>発作</b>がある。</p>
+  </div>
+
+  <div class="question" id="Q24">
+    <p class="sentence"><b>Q24.</b> We are putting up our house as ____ for a bank loan.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q24', true)">collateral</button>
+      <button onclick="checkAnswer('Q24', false)">stake</button>
+      <button onclick="checkAnswer('Q24', false)">bane</button>
+      <button onclick="checkAnswer('Q24', false)">onus</button>
+    </div>
+    <p class="translation">正解: collateral → 銀行ローンのために家を<b>担保</b>にしている。</p>
+  </div>
+
+  <div class="question" id="Q25">
+    <p class="sentence"><b>Q25.</b> A major ____ to your success is your poor attitude.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q25', true)">impediment</button>
+      <button onclick="checkAnswer('Q25', false)">stake</button>
+      <button onclick="checkAnswer('Q25', false)">levity</button>
+      <button onclick="checkAnswer('Q25', false)">blur</button>
+    </div>
+    <p class="translation">正解: impediment → あなたの成功への大きな<b>障害</b>はその悪い態度だ。</p>
+  </div>
+
+  <div class="question" id="Q26">
+    <p class="sentence"><b>Q26.</b> A ____ musician, he could play several instruments by the age of five.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q26', true)">precocious</button>
+      <button onclick="checkAnswer('Q26', false)">lavish</button>
+      <button onclick="checkAnswer('Q26', false)">meager</button>
+      <button onclick="checkAnswer('Q26', false)">astute</button>
+    </div>
+    <p class="translation">正解: precocious → 彼は<b>早熟な</b>音楽家で、5歳までにいくつかの楽器を弾けた。</p>
+  </div>
+
+  <div class="question" id="Q27">
+    <p class="sentence"><b>Q27.</b> The service at the local fast food place is ____.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q27', true)">mediocre</button>
+      <button onclick="checkAnswer('Q27', false)">benign</button>
+      <button onclick="checkAnswer('Q27', false)">lavish</button>
+      <button onclick="checkAnswer('Q27', false)">frugal</button>
+    </div>
+    <p class="translation">正解: mediocre → そのファストフード店のサービスは<b>平凡</b>だ。</p>
+  </div>
+
+  <div class="question" id="Q28">
+    <p class="sentence"><b>Q28.</b> The truck driver’s ____ driving led to her losing her job.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q28', true)">negligent</button>
+      <button onclick="checkAnswer('Q28', false)">frigid</button>
+      <button onclick="checkAnswer('Q28', false)">cumbersome</button>
+      <button onclick="checkAnswer('Q28', false)">astute</button>
+    </div>
+    <p class="translation">正解: negligent → トラック運転手の<b>不注意な</b>運転により職を失った。</p>
+  </div>
+
+  <div class="question" id="Q29">
+    <p class="sentence"><b>Q29.</b> Some journalists discovered that the mayor was accepting ____.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q29', true)">kickbacks</button>
+      <button onclick="checkAnswer('Q29', false)">blur</button>
+      <button onclick="checkAnswer('Q29', false)">reprisals</button>
+      <button onclick="checkAnswer('Q29', false)">retorts</button>
+    </div>
+    <p class="translation">正解: kickbacks → 一部の記者は市長が<b>裏金</b>を受け取っていることを突き止めた。</p>
+  </div>
+
+  <div class="question" id="Q30">
+    <p class="sentence"><b>Q30.</b> Some professors believe attending lectures is ____ to passing their courses.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q30', true)">requisite</button>
+      <button onclick="checkAnswer('Q30', false)">banter</button>
+      <button onclick="checkAnswer('Q30', false)">perennial</button>
+      <button onclick="checkAnswer('Q30', false)">onus</button>
+    </div>
+    <p class="translation">正解: requisite → 講義に出席することは科目を合格するための<b>必要条件</b>だと考える教授もいる。</p>
+  </div>
+
+  <div class="question" id="Q31">
+    <p class="sentence"><b>Q31.</b> She was an ____ employee and won awards for her skills.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q31', true)">exemplary</button>
+      <button onclick="checkAnswer('Q31', false)">frugal</button>
+      <button onclick="checkAnswer('Q31', false)">derelict</button>
+      <button onclick="checkAnswer('Q31', false)">lavish</button>
+    </div>
+    <p class="translation">正解: exemplary → 彼女は<b>模範的な</b>社員で、その能力で表彰された。</p>
+  </div>
+
+  <div class="question" id="Q32">
+    <p class="sentence"><b>Q32.</b> ____ is a very normal behavior for teenagers and sometimes younger children too.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q32', true)">Defiance</button>
+      <button onclick="checkAnswer('Q32', false)">Levity</button>
+      <button onclick="checkAnswer('Q32', false)">Astuteness</button>
+      <button onclick="checkAnswer('Q32', false)">Insinuation</button>
+    </div>
+    <p class="translation">正解: Defiance → <b>反抗</b>はティーンやもっと若い子供たちでも非常に普通の行動だ。</p>
+  </div>
+
+  <div class="question" id="Q33">
+    <p class="sentence"><b>Q33.</b> They all made a ____ effort to improve product quality.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q33', true)">concerted</button>
+      <button onclick="checkAnswer('Q33', false)">frigid</button>
+      <button onclick="checkAnswer('Q33', false)">lavish</button>
+      <button onclick="checkAnswer('Q33', false)">copious</button>
+    </div>
+    <p class="translation">正解: concerted → 彼らは製品の品質を向上させるために<b>協調した</b>努力をした。</p>
+  </div>
+
+  <div class="question" id="Q34">
+    <p class="sentence"><b>Q34.</b> After a couple of minutes of friendly ____, the interviewer began asking job-related questions.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q34', true)">banter</button>
+      <button onclick="checkAnswer('Q34', false)">bravado</button>
+      <button onclick="checkAnswer('Q34', false)">prodigy</button>
+      <button onclick="checkAnswer('Q34', false)">omen</button>
+    </div>
+    <p class="translation">正解: banter → 2〜3分の友好的な<b>冗談のやり取り</b>の後、面接官は仕事に関する質問を始めた。</p>
+  </div>
+
+  <div class="question" id="Q35">
+    <p class="sentence"><b>Q35.</b> You should always apply an ____ when you cut yourself.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q35', true)">antiseptic</button>
+      <button onclick="checkAnswer('Q35', false)">lavish</button>
+      <button onclick="checkAnswer('Q35', false)">copious</button>
+      <button onclick="checkAnswer('Q35', false)">pervasive</button>
+    </div>
+    <p class="translation">正解: antiseptic → 自分を切ったときは必ず<b>消毒薬</b>を塗るべきだ。</p>
+  </div>
+
+  <div class="question" id="Q36">
+    <p class="sentence"><b>Q36.</b> People living in the area are upset about the ____ noise coming from the construction site.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q36', true)">incessant</button>
+      <button onclick="checkAnswer('Q36', false)">frigid</button>
+      <button onclick="checkAnswer('Q36', false)">boisterous</button>
+      <button onclick="checkAnswer('Q36', false)">lavish</button>
+    </div>
+    <p class="translation">正解: incessant → 住民たちは工事現場からの<b>絶え間ない</b>騒音に不満を抱いている。</p>
+  </div>
+
+  <div class="question" id="Q37">
+    <p class="sentence"><b>Q37.</b> He switched his ____ to the opposition party after he lost the election.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q37', true)">allegiance</button>
+      <button onclick="checkAnswer('Q37', false)">appraisal</button>
+      <button onclick="checkAnswer('Q37', false)">coercion</button>
+      <button onclick="checkAnswer('Q37', false)">imposition</button>
+    </div>
+    <p class="translation">正解: allegiance → 彼は選挙に敗れて野党に<b>忠誠を乗り換えた</b>。</p>
+  </div>
+
+  <div class="question" id="Q38">
+    <p class="sentence"><b>Q38.</b> If you are three months ____ in paying rent, you will be kicked out.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q38', true)">delinquent</button>
+      <button onclick="checkAnswer('Q38', false)">pervasive</button>
+      <button onclick="checkAnswer('Q38', false)">lavish</button>
+      <button onclick="checkAnswer('Q38', false)">meager</button>
+    </div>
+    <p class="translation">正解: delinquent → 家賃の支払いが3か月<b>滞納</b>すると追い出される。</p>
+  </div>
+
+  <div class="question" id="Q39">
+    <p class="sentence"><b>Q39.</b> Her mother kept ____ her to cut her hair until she finally did.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q39', true)">prodding</button>
+      <button onclick="checkAnswer('Q39', false)">deriding</button>
+      <button onclick="checkAnswer('Q39', false)">squirming</button>
+      <button onclick="checkAnswer('Q39', false)">contriving</button>
+    </div>
+    <p class="translation">正解: prodding → 母親は娘に髪を切るように何度も<b>せき立てた</b>。</p>
+  </div>
+
+  <div class="question" id="Q40">
+    <p class="sentence"><b>Q40.</b> He claims that he was ____ into signing an unfair contract with the company.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q40', true)">coerced</button>
+      <button onclick="checkAnswer('Q40', false)">swayed</button>
+      <button onclick="checkAnswer('Q40', false)">flaunted</button>
+      <button onclick="checkAnswer('Q40', false)">besieged</button>
+    </div>
+    <p class="translation">正解: coerced → 彼は会社との不当な契約に<b>強制的に署名させられた</b>と主張している。</p>
+  </div>
+
+  <div class="question" id="Q41">
+    <p class="sentence"><b>Q41.</b> Please provide information that is ____ to the case.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q41', true)">pertinent</button>
+      <button onclick="checkAnswer('Q41', false)">arbitrary</button>
+      <button onclick="checkAnswer('Q41', false)">morbid</button>
+      <button onclick="checkAnswer('Q41', false)">appraise</button>
+    </div>
+    <p class="translation">正解: pertinent → その事件に<b>関連する</b>情報を提供してください。</p>
+  </div>
+
+  <div class="question" id="Q42">
+    <p class="sentence"><b>Q42.</b> The decision seemed completely ____.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q42', true)">arbitrary</button>
+      <button onclick="checkAnswer('Q42', false)">pertinent</button>
+      <button onclick="checkAnswer('Q42', false)">stagnant</button>
+      <button onclick="checkAnswer('Q42', false)">purge</button>
+    </div>
+    <p class="translation">正解: arbitrary → その決定は完全に<b>恣意的</b>に思われた。</p>
+  </div>
+
+  <div class="question" id="Q43">
+    <p class="sentence"><b>Q43.</b> The water in the pond became ____.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q43', true)">stagnant</button>
+      <button onclick="checkAnswer('Q43', false)">bane</button>
+      <button onclick="checkAnswer('Q43', false)">pervasive</button>
+      <button onclick="checkAnswer('Q43', false)">tacit</button>
+    </div>
+    <p class="translation">正解: stagnant → 池の水は<b>よどんで</b>しまった。</p>
+  </div>
+
+  <div class="question" id="Q44">
+    <p class="sentence"><b>Q44.</b> Mosquitoes are the ____ of my summer evenings.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q44', true)">bane</button>
+      <button onclick="checkAnswer('Q44', false)">morbid</button>
+      <button onclick="checkAnswer('Q44', false)">nullify</button>
+      <button onclick="checkAnswer('Q44', false)">purge</button>
+    </div>
+    <p class="translation">正解: bane → 蚊は夏の夜の<b>悩みの種</b>だ。</p>
+  </div>
+
+  <div class="question" id="Q45">
+    <p class="sentence"><b>Q45.</b> He has a ____ fascination with death.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q45', true)">morbid</button>
+      <button onclick="checkAnswer('Q45', false)">bane</button>
+      <button onclick="checkAnswer('Q45', false)">pertinent</button>
+      <button onclick="checkAnswer('Q45', false)">stagnant</button>
+    </div>
+    <p class="translation">正解: morbid → 彼は死に対して<b>病的な</b>関心を持っている。</p>
+  </div>
+
+  <div class="question" id="Q46">
+    <p class="sentence"><b>Q46.</b> The government tried to ____ corruption from the system.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q46', true)">purge</button>
+      <button onclick="checkAnswer('Q46', false)">pervasive</button>
+      <button onclick="checkAnswer('Q46', false)">arbitrary</button>
+      <button onclick="checkAnswer('Q46', false)">appraise</button>
+    </div>
+    <p class="translation">正解: purge → 政府は制度から腐敗を<b>一掃</b>しようとした。</p>
+  </div>
+
+  <div class="question" id="Q47">
+    <p class="sentence"><b>Q47.</b> A sense of fear was ____ in the city after the attack.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q47', true)">pervasive</button>
+      <button onclick="checkAnswer('Q47', false)">purge</button>
+      <button onclick="checkAnswer('Q47', false)">tacit</button>
+      <button onclick="checkAnswer('Q47', false)">morbid</button>
+    </div>
+    <p class="translation">正解: pervasive → 攻撃後、恐怖感が街に<b>広がっていた</b>。</p>
+  </div>
+
+  <div class="question" id="Q48">
+    <p class="sentence"><b>Q48.</b> The jeweler will ____ the value of the diamond.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q48', true)">appraise</button>
+      <button onclick="checkAnswer('Q48', false)">pertinent</button>
+      <button onclick="checkAnswer('Q48', false)">stagnant</button>
+      <button onclick="checkAnswer('Q48', false)">tacit</button>
+    </div>
+    <p class="translation">正解: appraise → 宝石商がダイヤの価値を<b>鑑定する</b>だろう。</p>
+  </div>
+
+  <div class="question" id="Q49">
+    <p class="sentence"><b>Q49.</b> The contract was ____ due to fraud.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q49', true)">nullify</button>
+      <button onclick="checkAnswer('Q49', false)">pervasive</button>
+      <button onclick="checkAnswer('Q49', false)">purge</button>
+      <button onclick="checkAnswer('Q49', false)">arbitrary</button>
+    </div>
+    <p class="translation">正解: nullify → その契約は詐欺により<b>無効</b>となった。</p>
+  </div>
+
+  <div class="question" id="Q50">
+    <p class="sentence"><b>Q50.</b> There was a ____ agreement between them not to talk about it.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q50', true)">tacit</button>
+      <button onclick="checkAnswer('Q50', false)">pertinent</button>
+      <button onclick="checkAnswer('Q50', false)">stagnant</button>
+      <button onclick="checkAnswer('Q50', false)">morbid</button>
+    </div>
+    <p class="translation">正解: tacit → それについて話さないという彼らの間での<b>暗黙の</b>合意があった。</p>
+  </div>
+
+  <div class="question" id="Q51">
+    <p class="sentence"><b>Q51.</b> They carried out a ____ operation to gather intelligence.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q51', true)">covert</button>
+      <button onclick="checkAnswer('Q51', false)">redundant</button>
+      <button onclick="checkAnswer('Q51', false)">recant</button>
+      <button onclick="checkAnswer('Q51', false)">alleviate</button>
+    </div>
+    <p class="translation">正解: covert → 彼らは情報を集めるために<b>秘密の</b>作戦を行った。</p>
+  </div>
+
+  <div class="question" id="Q52">
+    <p class="sentence"><b>Q52.</b> The government tried to ____ the protesters with concessions.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q52', true)">appease</button>
+      <button onclick="checkAnswer('Q52', false)">fortify</button>
+      <button onclick="checkAnswer('Q52', false)">resilient</button>
+      <button onclick="checkAnswer('Q52', false)">concur</button>
+    </div>
+    <p class="translation">正解: appease → 政府は譲歩で抗議者を<b>なだめようとした</b>。</p>
+  </div>
+
+  <div class="question" id="Q53">
+    <p class="sentence"><b>Q53.</b> They ____ the city walls to protect against attack.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q53', true)">fortify</button>
+      <button onclick="checkAnswer('Q53', false)">appease</button>
+      <button onclick="checkAnswer('Q53', false)">recant</button>
+      <button onclick="checkAnswer('Q53', false)">redundant</button>
+    </div>
+    <p class="translation">正解: fortify → 彼らは攻撃から守るために城壁を<b>強化した</b>。</p>
+  </div>
+
+  <div class="question" id="Q54">
+    <p class="sentence"><b>Q54.</b> The workers began to ____ the old machinery.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q54', true)">dismantle</button>
+      <button onclick="checkAnswer('Q54', false)">alleviate</button>
+      <button onclick="checkAnswer('Q54', false)">redundant</button>
+      <button onclick="checkAnswer('Q54', false)">resilient</button>
+    </div>
+    <p class="translation">正解: dismantle → 作業員たちは古い機械を<b>分解し始めた</b>。</p>
+  </div>
+
+  <div class="question" id="Q55">
+    <p class="sentence"><b>Q55.</b> The new system made several jobs ____.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q55', true)">redundant</button>
+      <button onclick="checkAnswer('Q55', false)">fortify</button>
+      <button onclick="checkAnswer('Q55', false)">recant</button>
+      <button onclick="checkAnswer('Q55', false)">appease</button>
+    </div>
+    <p class="translation">正解: redundant → 新しいシステムでいくつかの職が<b>不要</b>になった。</p>
+  </div>
+
+  <div class="question" id="Q56">
+    <p class="sentence"><b>Q56.</b> The medicine helped to ____ his pain.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q56', true)">alleviate</button>
+      <button onclick="checkAnswer('Q56', false)">dismantle</button>
+      <button onclick="checkAnswer('Q56', false)">resilient</button>
+      <button onclick="checkAnswer('Q56', false)">concur</button>
+    </div>
+    <p class="translation">正解: alleviate → 薬は彼の痛みを<b>和らげた</b>。</p>
+  </div>
+
+  <div class="question" id="Q57">
+    <p class="sentence"><b>Q57.</b> Children are often more ____ than adults after illness.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q57', true)">resilient</button>
+      <button onclick="checkAnswer('Q57', false)">alleviate</button>
+      <button onclick="checkAnswer('Q57', false)">redundant</button>
+      <button onclick="checkAnswer('Q57', false)">appease</button>
+    </div>
+    <p class="translation">正解: resilient → 子供は病気の後、大人よりも<b>回復が早い</b>ことが多い。</p>
+  </div>
+
+  <div class="question" id="Q58">
+    <p class="sentence"><b>Q58.</b> I ____ with your opinion on this matter.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q58', true)">concur</button>
+      <button onclick="checkAnswer('Q58', false)">fortify</button>
+      <button onclick="checkAnswer('Q58', false)">resilient</button>
+      <button onclick="checkAnswer('Q58', false)">nullify</button>
+    </div>
+    <p class="translation">正解: concur → 私はこの件についてあなたの意見に<b>同意する</b>。</p>
+  </div>
+
+  <div class="question" id="Q59">
+    <p class="sentence"><b>Q59.</b> He was forced to ____ his statement under pressure.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q59', true)">recant</button>
+      <button onclick="checkAnswer('Q59', false)">covert</button>
+      <button onclick="checkAnswer('Q59', false)">redundant</button>
+      <button onclick="checkAnswer('Q59', false)">appease</button>
+    </div>
+    <p class="translation">正解: recant → 彼は圧力に屈して発言を<b>撤回した</b>。</p>
+  </div>
+
+  <div class="question" id="Q60">
+    <p class="sentence"><b>Q60.</b> The court's decision served to ____ the law.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q60', true)">nullify</button>
+      <button onclick="checkAnswer('Q60', false)">concur</button>
+      <button onclick="checkAnswer('Q60', false)">alleviate</button>
+      <button onclick="checkAnswer('Q60', false)">resilient</button>
+    </div>
+    <p class="translation">正解: nullify → 裁判所の判決はその法律を<b>無効にした</b>。</p>
+  </div>
+
+  <div class="question" id="Q61">
+    <p class="sentence"><b>Q61.</b> His remarks were met with a sharp ____ from the teacher.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q61', true)">rebuke</button>
+      <button onclick="checkAnswer('Q61', false)">banter</button>
+      <button onclick="checkAnswer('Q61', false)">levity</button>
+      <button onclick="checkAnswer('Q61', false)">mock</button>
+    </div>
+    <p class="translation">正解: rebuke → 彼の発言は教師からの厳しい<b>叱責</b>を受けた。</p>
+  </div>
+
+  <div class="question" id="Q62">
+    <p class="sentence"><b>Q62.</b> He tried to ____ his friend from making a bad investment.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q62', true)">dissuade</button>
+      <button onclick="checkAnswer('Q62', false)">appease</button>
+      <button onclick="checkAnswer('Q62', false)">blur</button>
+      <button onclick="checkAnswer('Q62', false)">purge</button>
+    </div>
+    <p class="translation">正解: dissuade → 彼は友人が悪い投資をしないように<b>思いとどまらせた</b>。</p>
+  </div>
+
+  <div class="question" id="Q63">
+    <p class="sentence"><b>Q63.</b> He ____ that the politician was taking bribes.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q63', true)">insinuated</button>
+      <button onclick="checkAnswer('Q63', false)">mocked</button>
+      <button onclick="checkAnswer('Q63', false)">bantered</button>
+      <button onclick="checkAnswer('Q63', false)">besieged</button>
+    </div>
+    <p class="translation">正解: insinuated → 彼はその政治家が賄賂を受け取っていると<b>ほのめかした</b>。</p>
+  </div>
+
+  <div class="question" id="Q64">
+    <p class="sentence"><b>Q64.</b> The teacher ____ the students to work harder.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q64', true)">exhorted</button>
+      <button onclick="checkAnswer('Q64', false)">rebuked</button>
+      <button onclick="checkAnswer('Q64', false)">dissuaded</button>
+      <button onclick="checkAnswer('Q64', false)">bantered</button>
+    </div>
+    <p class="translation">正解: exhorted → 先生は生徒たちにもっと努力するよう<b>強く勧めた</b>。</p>
+  </div>
+
+  <div class="question" id="Q65">
+    <p class="sentence"><b>Q65.</b> She ____ his rude comment with a witty remark.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q65', true)">retorted</button>
+      <button onclick="checkAnswer('Q65', false)">rebuked</button>
+      <button onclick="checkAnswer('Q65', false)">dissuaded</button>
+      <button onclick="checkAnswer('Q65', false)">exhorted</button>
+    </div>
+    <p class="translation">正解: retorted → 彼女は彼の失礼な発言に<b>機知に富んだ返答</b>をした。</p>
+  </div>
+
+  <div class="question" id="Q66">
+    <p class="sentence"><b>Q66.</b> They were convicted of fraud and forced to ____ money from their victims.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q66', true)">swindle</button>
+      <button onclick="checkAnswer('Q66', false)">prodigy</button>
+      <button onclick="checkAnswer('Q66', false)">banter</button>
+      <button onclick="checkAnswer('Q66', false)">mock</button>
+    </div>
+    <p class="translation">正解: swindle → 彼らは詐欺で有罪となり、被害者から金を<b>だまし取った</b>。</p>
+  </div>
+
+  <div class="question" id="Q67">
+    <p class="sentence"><b>Q67.</b> The magician made the rabbit ____ from the hat.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q67', true)">vanish</button>
+      <button onclick="checkAnswer('Q67', false)">slouch</button>
+      <button onclick="checkAnswer('Q67', false)">ebb</button>
+      <button onclick="checkAnswer('Q67', false)">blur</button>
+    </div>
+    <p class="translation">正解: vanish → 手品師は帽子からウサギを<b>消して</b>見せた。</p>
+  </div>
+
+  <div class="question" id="Q68">
+    <p class="sentence"><b>Q68.</b> He ____ the idea of working with them.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q68', true)">repudiated</button>
+      <button onclick="checkAnswer('Q68', false)">mocked</button>
+      <button onclick="checkAnswer('Q68', false)">dissuaded</button>
+      <button onclick="checkAnswer('Q68', false)">blurred</button>
+    </div>
+    <p class="translation">正解: repudiated → 彼は彼らと一緒に働くという考えを<b>拒絶した</b>。</p>
+  </div>
+
+  <div class="question" id="Q69">
+    <p class="sentence"><b>Q69.</b> The criminal managed to ____ with the money before the police arrived.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q69', true)">abscond</button>
+      <button onclick="checkAnswer('Q69', false)">vanish</button>
+      <button onclick="checkAnswer('Q69', false)">squirm</button>
+      <button onclick="checkAnswer('Q69', false)">retort</button>
+    </div>
+    <p class="translation">正解: abscond → 犯人は警察が来る前に金を持って<b>逃亡した</b>。</p>
+  </div>
+
+  <div class="question" id="Q70">
+    <p class="sentence"><b>Q70.</b> His strength began to ____ after the long illness.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q70', true)">ebb</button>
+      <button onclick="checkAnswer('Q70', false)">blur</button>
+      <button onclick="checkAnswer('Q70', false)">repudiate</button>
+      <button onclick="checkAnswer('Q70', false)">dismantle</button>
+    </div>
+    <p class="translation">正解: ebb → 長い病気の後、彼の力は<b>衰え始めた</b>。</p>
+  </div>
+
+  <div class="question" id="Q71">
+    <p class="sentence"><b>Q71.</b> The group decided to ____ in the park for the event.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q71', true)">congregate</button>
+      <button onclick="checkAnswer('Q71', false)">vanish</button>
+      <button onclick="checkAnswer('Q71', false)">ebb</button>
+      <button onclick="checkAnswer('Q71', false)">repudiate</button>
+    </div>
+    <p class="translation">正解: congregate → その団体はイベントのために公園に<b>集まる</b>ことにした。</p>
+  </div>
+
+  <div class="question" id="Q72">
+    <p class="sentence"><b>Q72.</b> The shy girl gave a ____ smile when praised.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q72', true)">demure</button>
+      <button onclick="checkAnswer('Q72', false)">mock</button>
+      <button onclick="checkAnswer('Q72', false)">vanish</button>
+      <button onclick="checkAnswer('Q72', false)">ebb</button>
+    </div>
+    <p class="translation">正解: demure → その内気な少女は褒められると<b>控えめに</b>微笑んだ。</p>
+  </div>
+
+  <div class="question" id="Q73">
+    <p class="sentence"><b>Q73.</b> They began to ____ his accent during the conversation.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q73', true)">mock</button>
+      <button onclick="checkAnswer('Q73', false)">dissuade</button>
+      <button onclick="checkAnswer('Q73', false)">ebb</button>
+      <button onclick="checkAnswer('Q73', false)">congregate</button>
+    </div>
+    <p class="translation">正解: mock → 彼らは会話中に彼の訛りを<b>からかい始めた</b>。</p>
+  </div>
+
+  <div class="question" id="Q74">
+    <p class="sentence"><b>Q74.</b> The judge ordered the witness to give his ____.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q74', true)">deposition</button>
+      <button onclick="checkAnswer('Q74', false)">retort</button>
+      <button onclick="checkAnswer('Q74', false)">blur</button>
+      <button onclick="checkAnswer('Q74', false)">prodigy</button>
+    </div>
+    <p class="translation">正解: deposition → 裁判官は証人に<b>供述書</b>を提出するよう命じた。</p>
+  </div>
+
+  <div class="question" id="Q75">
+    <p class="sentence"><b>Q75.</b> The company focused on employee ____ to reduce turnover.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q75', true)">retention</button>
+      <button onclick="checkAnswer('Q75', false)">repudiation</button>
+      <button onclick="checkAnswer('Q75', false)">retraction</button>
+      <button onclick="checkAnswer('Q75', false)">resiliency</button>
+    </div>
+    <p class="translation">正解: retention → 会社は離職率を減らすため従業員の<b>定着</b>に注力した。</p>
+  </div>
+
+  <div class="question" id="Q76">
+    <p class="sentence"><b>Q76.</b> The Internet helps the ____ of information worldwide.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q76', true)">propagation</button>
+      <button onclick="checkAnswer('Q76', false)">retention</button>
+      <button onclick="checkAnswer('Q76', false)">repudiation</button>
+      <button onclick="checkAnswer('Q76', false)">prodigy</button>
+    </div>
+    <p class="translation">正解: propagation → インターネットは情報の世界的な<b>普及</b>を助ける。</p>
+  </div>
+
+  <div class="question" id="Q77">
+    <p class="sentence"><b>Q77.</b> His comments were met with ____ laughter.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q77', true)">derisive</button>
+      <button onclick="checkAnswer('Q77', false)">banter</button>
+      <button onclick="checkAnswer('Q77', false)">boisterous</button>
+      <button onclick="checkAnswer('Q77', false)">bravado</button>
+    </div>
+    <p class="translation">正解: derisive → 彼の発言は<b>嘲笑</b>で迎えられた。</p>
+  </div>
+
+  <div class="question" id="Q78">
+    <p class="sentence"><b>Q78.</b> She made a ____ mistake on the report.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q78', true)">blunder</button>
+      <button onclick="checkAnswer('Q78', false)">mock</button>
+      <button onclick="checkAnswer('Q78', false)">rebuke</button>
+      <button onclick="checkAnswer('Q78', false)">vanish</button>
+    </div>
+    <p class="translation">正解: blunder → 彼女は報告書で<b>大失敗</b>を犯した。</p>
+  </div>
+
+  <div class="question" id="Q79">
+    <p class="sentence"><b>Q79.</b> He tried to ____ the child into eating vegetables.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q79', true)">coax</button>
+      <button onclick="checkAnswer('Q79', false)">mock</button>
+      <button onclick="checkAnswer('Q79', false)">rebuke</button>
+      <button onclick="checkAnswer('Q79', false)">banter</button>
+    </div>
+    <p class="translation">正解: coax → 彼は子どもに野菜を食べさせようと<b>なだめすかした</b>。</p>
+  </div>
+
+  <div class="question" id="Q80">
+    <p class="sentence"><b>Q80.</b> The city streets ____ with tourists during the festival.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q80', true)">teemed</button>
+      <button onclick="checkAnswer('Q80', false)">blurred</button>
+      <button onclick="checkAnswer('Q80', false)">retorted</button>
+      <button onclick="checkAnswer('Q80', false)">mocked</button>
+    </div>
+    <p class="translation">正解: teemed → 祭りの間、街の通りは観光客で<b>あふれかえった</b>。</p>
+  </div>
+
+  <div class="="question" id="Q81">
+    <p class="sentence"><b>Q81.</b> The boy began to ____ nervously during the interview.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q81', true)">squirm</button>
+      <button onclick="checkAnswer('Q81', false)">mock</button>
+      <button onclick="checkAnswer('Q81', false)">blur</button>
+      <button onclick="checkAnswer('Q81', false)">ebb</button>
+    </div>
+    <p class="translation">正解: squirm → 少年は面接中に緊張して<b>もじもじし始めた</b>。</p>
+  </div>
+
+  <div class="question" id="Q82">
+    <p class="sentence"><b>Q82.</b> His loud and ____ behavior annoyed everyone.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q82', true)">boisterous</button>
+      <button onclick="checkAnswer('Q82', false)">lavish</button>
+      <button onclick="checkAnswer('Q82', false)">frigid</button>
+      <button onclick="checkAnswer('Q82', false)">meager</button>
+    </div>
+    <p class="translation">正解: boisterous → 彼の大声で<b>騒々しい</b>態度は皆を苛立たせた。</p>
+  </div>
+
+  <div class="question" id="Q83">
+    <p class="sentence"><b>Q83.</b> She spoke with great ____ about the future of the company.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q83', true)">conviction</button>
+      <button onclick="checkAnswer('Q83', false)">retention</button>
+      <button onclick="checkAnswer('Q83', false)">blunder</button>
+      <button onclick="checkAnswer('Q83', false)">requisite</button>
+    </div>
+    <p class="translation">正解: conviction → 彼女は会社の将来について強い<b>確信</b>を持って語った。</p>
+  </div>
+
+  <div class="question" id="Q84">
+    <p class="sentence"><b>Q84.</b> His ____ was evident when he refused to admit his mistake.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q84', true)">obstinacy</button>
+      <button onclick="checkAnswer('Q84', false)">levity</button>
+      <button onclick="checkAnswer('Q84', false)">banter</button>
+      <button onclick="checkAnswer('Q84', false)">stake</button>
+    </div>
+    <p class="translation">正解: obstinacy → 自分の誤りを認めない彼の<b>頑固さ</b>は明らかだった。</p>
+  </div>
+
+  <div class="question" id="Q85">
+    <p class="sentence"><b>Q85.</b> His ____ made him a natural leader.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q85', true)">charisma</button>
+      <button onclick="checkAnswer('Q85', false)">bravado</button>
+      <button onclick="checkAnswer('Q85', false)">levity</button>
+      <button onclick="checkAnswer('Q85', false)">astuteness</button>
+    </div>
+    <p class="translation">正解: charisma → 彼の<b>カリスマ性</b>が自然なリーダーにした。</p>
+  </div>
+
+  <div class="question" id="Q86">
+    <p class="sentence"><b>Q86.</b> He showed great ____ in solving the difficult puzzle.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q86', true)">ingenuity</button>
+      <button onclick="checkAnswer('Q86', false)">blunder</button>
+      <button onclick="checkAnswer('Q86', false)">impasse</button>
+      <button onclick="checkAnswer('Q86', false)">banter</button>
+    </div>
+    <p class="translation">正解: ingenuity → 彼は難しいパズルを解くのに大きな<b>創意工夫</b>を示した。</p>
+  </div>
+
+  <div class="question" id="Q87">
+    <p class="sentence"><b>Q87.</b> She is considered a child ____ because of her exceptional talent.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q87', true)">prodigy</button>
+      <button onclick="checkAnswer('Q87', false)">precocious</button>
+      <button onclick="checkAnswer('Q87', false)">charisma</button>
+      <button onclick="checkAnswer('Q87', false)">onus</button>
+    </div>
+    <p class="translation">正解: prodigy → 彼女はその卓越した才能から天才<b>神童</b>と見なされている。</p>
+  </div>
+
+  <div class="question" id="Q88">
+    <p class="sentence"><b>Q88.</b> His ____ made the audience laugh during the serious speech.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q88', true)">levity</button>
+      <button onclick="checkAnswer('Q88', false)">charisma</button>
+      <button onclick="checkAnswer('Q88', false)">rebuke</button>
+      <button onclick="checkAnswer('Q88', false)">bravado</button>
+    </div>
+    <p class="translation">正解: levity → 彼の<b>軽薄さ</b>が真剣なスピーチ中に観客を笑わせた。</p>
+  </div>
+
+  <div class="question" id="Q89">
+    <p class="sentence"><b>Q89.</b> His loud ____ impressed some, but others saw it as foolish.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q89', true)">bravado</button>
+      <button onclick="checkAnswer('Q89', false)">charisma</button>
+      <button onclick="checkAnswer('Q89', false)">levity</button>
+      <button onclick="checkAnswer('Q89', false)">banter</button>
+    </div>
+    <p class="translation">正解: bravado → 彼の大げさな<b>虚勢</b>は一部には感心されたが、他には愚かに見られた。</p>
+  </div>
+
+  <div class="question" id="Q90">
+    <p class="sentence"><b>Q90.</b> The park was a ____ of flowers in spring.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q90', true)">profusion</button>
+      <button onclick="checkAnswer('Q90', false)">meager</button>
+      <button onclick="checkAnswer('Q90', false)">copious</button>
+      <button onclick="checkAnswer('Q90', false)">frugal</button>
+    </div>
+    <p class="translation">正解: profusion → 春の公園は花の<b>豊富さ</b>にあふれていた。</p>
+  </div>
+
+  <div class="question" id="Q91">
+    <p class="sentence"><b>Q91.</b> His ____ to finish the race inspired many.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q91', true)">determination</button>
+      <button onclick="checkAnswer('Q91', false)">resiliency</button>
+      <button onclick="checkAnswer('Q91', false)">conviction</button>
+      <button onclick="checkAnswer('Q91', false)">onus</button>
+    </div>
+    <p class="translation">正解: determination → レースを終える彼の<b>決意</b>は多くの人を鼓舞した。</p>
+  </div>
+
+  <div class="question" id="Q92">
+    <p class="sentence"><b>Q92.</b> The novel’s plot was a complex ____ of intrigue and betrayal.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q92', true)">labyrinth</button>
+      <button onclick="checkAnswer('Q92', false)">impasse</button>
+      <button onclick="checkAnswer('Q92', false)">blunder</button>
+      <button onclick="checkAnswer('Q92', false)">concession</button>
+    </div>
+    <p class="translation">正解: labyrinth → その小説の筋は陰謀と裏切りの複雑な<b>迷宮</b>だった。</p>
+  </div>
+
+  <div class="question" id="Q93">
+    <p class="sentence"><b>Q93.</b> The coach’s ____ pushed the team to do better.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q93', true)">exhortation</button>
+      <button onclick="checkAnswer('Q93', false)">rebuke</button>
+      <button onclick="checkAnswer('Q93', false)">retort</button>
+      <button onclick="checkAnswer('Q93', false)">banter</button>
+    </div>
+    <p class="translation">正解: exhortation → コーチの<b>激励</b>がチームをより良くさせた。</p>
+  </div>
+
+  <div class="question" id="Q94">
+    <p class="sentence"><b>Q94.</b> The parents' ____ for their children's safety was obvious.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q94', true)">solicitude</button>
+      <button onclick="checkAnswer('Q94', false)">levity</button>
+      <button onclick="checkAnswer('Q94', false)">bravado</button>
+      <button onclick="checkAnswer('Q94', false)">charisma</button>
+    </div>
+    <p class="translation">正解: solicitude → 子供たちの安全への親の<b>心配</b>は明らかだった。</p>
+  </div>
+
+  <div class="question" id="Q95">
+    <p class="sentence"><b>Q95.</b> His ____ as a pianist was recognized worldwide.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q95', true)">renown</button>
+      <button onclick="checkAnswer('Q95', false)">onus</button>
+      <button onclick="checkAnswer('Q95', false)">profusion</button>
+      <button onclick="checkAnswer('Q95', false)">labyrinth</button>
+    </div>
+    <p class="translation">正解: renown → ピアニストとしての彼の<b>名声</b>は世界的に認められた。</p>
+  </div>
+
+  <div class="question" id="Q96">
+    <p class="sentence"><b>Q96.</b> She had the ____ to continue despite difficulties.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q96', true)">tenacity</button>
+      <button onclick="checkAnswer('Q96', false)">levity</button>
+      <button onclick="checkAnswer('Q96', false)">bravado</button>
+      <button onclick="checkAnswer('Q96', false)">concession</button>
+    </div>
+    <p class="translation">正解: tenacity → 困難にもかかわらず<b>粘り強さ</b>を持ち続けた。</p>
+  </div>
+
+  <div class="question" id="Q97">
+    <p class="sentence"><b>Q97.</b> The teacher admired the student’s ____ to study every night.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q97', true)">resolve</button>
+      <button onclick="checkAnswer('Q97', false)">tenacity</button>
+      <button onclick="checkAnswer('Q97', false)">solicitude</button>
+      <button onclick="checkAnswer('Q97', false)">renown</button>
+    </div>
+    <p class="translation">正解: resolve → 毎晩勉強する学生の<b>決意</b>を教師は称賛した。</p>
+  </div>
+
+  <div class="question" id="Q98">
+    <p class="sentence"><b>Q98.</b> The company faced the ____ of layoffs due to declining sales.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q98', true)">onus</button>
+      <button onclick="checkAnswer('Q98', false)">profusion</button>
+      <button onclick="checkAnswer('Q98', false)">labyrinth</button>
+      <button onclick="checkAnswer('Q98', false)">resolve</button>
+    </div>
+    <p class="translation">正解: onus → 売上減少により会社は人員削減の<b>責任</b>を負った。</p>
+  </div>
+
+  <div class="question" id="Q99">
+    <p class="sentence"><b>Q99.</b> The new law was seen as an ____ on personal freedom.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q99', true)">imposition</button>
+      <button onclick="checkAnswer('Q99', false)">tenacity</button>
+      <button onclick="checkAnswer('Q99', false)">resolve</button>
+      <button onclick="checkAnswer('Q99', false)">onus</button>
+    </div>
+    <p class="translation">正解: imposition → 新しい法律は個人の自由への<b>課すもの</b>と見なされた。</p>
+  </div>
+
+  <div class="question" id="Q100">
+    <p class="sentence"><b>Q100.</b> His ____ of the house was done professionally.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q100', true)">appraisal</button>
+      <button onclick="checkAnswer('Q100', false)">labyrinth</button>
+      <button onclick="checkAnswer('Q100', false)">renown</button>
+      <button onclick="checkAnswer('Q100', false)">profusion</button>
+    </div>
+    <p class="translation">正解: appraisal → 彼の家の<b>鑑定</b>は専門的に行われた。</p>
+  </div>
+
+  <div class="question" id="Q101">
+    <p class="sentence"><b>Q101.</b> The scandal forced the politician’s ____ from office.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q101', true)">resignation</button>
+      <button onclick="checkAnswer('Q101', false)">resolve</button>
+      <button onclick="checkAnswer('Q101', false)">retention</button>
+      <button onclick="checkAnswer('Q101', false)">tenacity</button>
+    </div>
+    <p class="translation">正解: resignation → そのスキャンダルで政治家は職を<b>辞任</b>せざるを得なかった。</p>
+  </div>
+
+  <div class="question" id="Q102">
+    <p class="sentence"><b>Q102.</b> He gave a formal ____ of his earlier statement.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q102', true)">retraction</button>
+      <button onclick="checkAnswer('Q102', false)">repudiation</button>
+      <button onclick="checkAnswer('Q102', false)">resolve</button>
+      <button onclick="checkAnswer('Q102', false)">solicitude</button>
+    </div>
+    <p class="translation">正解: retraction → 彼は以前の発言を正式に<b>撤回</b>した。</p>
+  </div>
+
+  <div class="question" id="Q103">
+    <p class="sentence"><b>Q103.</b> The ____ for the new bridge was announced yesterday.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q103', true)">blueprint</button>
+      <button onclick="checkAnswer('Q103', false)">appraisal</button>
+      <button onclick="checkAnswer('Q103', false)">tenacity</button>
+      <button onclick="checkAnswer('Q103', false)">renown</button>
+    </div>
+    <p class="translation">正解: blueprint → 新しい橋の<b>設計図</b>が昨日発表された。</p>
+  </div>
+
+  <div class="question" id="Q104">
+    <p class="sentence"><b>Q104.</b> The teacher encouraged ____ in the classroom.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q104', true)">camaraderie</button>
+      <button onclick="checkAnswer('Q104', false)">banter</button>
+      <button onclick="checkAnswer('Q104', false)">bravado</button>
+      <button onclick="checkAnswer('Q104', false)">tenacity</button>
+    </div>
+    <p class="translation">正解: camaraderie → 教師は教室内の<b>友情と仲間意識</b>を奨励した。</p>
+  </div>
+
+  <div class="question" id="Q105">
+    <p class="sentence"><b>Q105.</b> The ____ of evidence led to the suspect’s arrest.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q105', true)">preponderance</button>
+      <button onclick="checkAnswer('Q105', false)">profusion</button>
+      <button onclick="checkAnswer('Q105', false)">onus</button>
+      <button onclick="checkAnswer('Q105', false)">impediment</button>
+    </div>
+    <p class="translation">正解: preponderance → 証拠の<b>優勢</b>が容疑者逮捕につながった。</p>
+  </div>
+
+  <div class="question" id="Q106">
+    <p class="sentence"><b>Q106.</b> The ____ of the accident is still under investigation.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q106', true)">aftermath</button>
+      <button onclick="checkAnswer('Q106', false)">resolve</button>
+      <button onclick="checkAnswer('Q106', false)">solicitude</button>
+      <button onclick="checkAnswer('Q106', false)">camaraderie</button>
+    </div>
+    <p class="translation">正解: aftermath → 事故の<b>余波</b>はまだ調査中だ。</p>
+  </div>
+
+  <div class="question" id="Q107">
+    <p class="sentence"><b>Q107.</b> She lived a life of ____ luxury.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q107', true)">lavish</button>
+      <button onclick="checkAnswer('Q107', false)">meager</button>
+      <button onclick="checkAnswer('Q107', false)">frugal</button>
+      <button onclick="checkAnswer('Q107', false)">boisterous</button>
+    </div>
+    <p class="translation">正解: lavish → 彼女は<b>贅沢な</b>生活を送っていた。</p>
+  </div>
+
+  <div class="question" id="Q108">
+    <p class="sentence"><b>Q108.</b> His ____ habits helped him save a lot of money.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q108', true)">frugal</button>
+      <button onclick="checkAnswer('Q108', false)">lavish</button>
+      <button onclick="checkAnswer('Q108', false)">copious</button>
+      <button onclick="checkAnswer('Q108', false)">boisterous</button>
+    </div>
+    <p class="translation">正解: frugal → 彼の<b>倹約的な</b>習慣が多額の貯金を可能にした。</p>
+  </div>
+
+  <div class="question" id="Q109">
+    <p class="sentence"><b>Q109.</b> The students took ____ notes during the lecture.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q109', true)">copious</button>
+      <button onclick="checkAnswer('Q109', false)">meager</button>
+      <button onclick="checkAnswer('Q109', false)">lavish</button>
+      <button onclick="checkAnswer('Q109', false)">frugal</button>
+    </div>
+    <p class="translation">正解: copious → 学生たちは講義中に<b>大量の</b>ノートを取った。</p>
+  </div>
+
+  <div class="question" id="Q110">
+    <p class="sentence"><b>Q110.</b> The child’s ____ behavior charmed everyone.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q110', true)">endearing</button>
+      <button onclick="checkAnswer('Q110', false)">boisterous</button>
+      <button onclick="checkAnswer('Q110', false)">derisive</button>
+      <button onclick="checkAnswer('Q110', false)">lavish</button>
+    </div>
+    <p class="translation">正解: endearing → その子の<b>愛らしい</b>態度が皆を魅了した。</p>
+  </div>
+
+  <div class="question" id="Q111">
+    <p class="sentence"><b>Q111.</b> He showed ____ by facing the challenge without fear.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q111', true)">valor</button>
+      <button onclick="checkAnswer('Q111', false)">tenacity</button>
+      <button onclick="checkAnswer('Q111', false)">resolve</button>
+      <button onclick="checkAnswer('Q111', false)">charisma</button>
+    </div>
+    <p class="translation">正解: valor → 彼は恐れずに挑戦に立ち向かう<b>勇気</b>を示した。</p>
+  </div>
+
+  <div class="question" id="Q112">
+    <p class="sentence"><b>Q112.</b> He made a ____ attempt to fix the old car.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q112', true)">futile</button>
+      <button onclick="checkAnswer('Q112', false)">lavish</button>
+      <button onclick="checkAnswer('Q112', false)">frugal</button>
+      <button onclick="checkAnswer('Q112', false)">copious</button>
+    </div>
+    <p class="translation">正解: futile → 彼は古い車を修理しようと<b>無駄な</b>試みをした。</p>
+  </div>
+
+  <div class="question" id="Q113">
+    <p class="sentence"><b>Q113.</b> He ____ his fists in anger.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q113', true)">clenched</button>
+      <button onclick="checkAnswer('Q113', false)">blurred</button>
+      <button onclick="checkAnswer('Q113', false)">mocked</button>
+      <button onclick="checkAnswer('Q113', false)">squirmed</button>
+    </div>
+    <p class="translation">正解: clenched → 彼は怒りで拳を<b>握りしめた</b>。</p>
+  </div>
+
+  <div class="question" id="Q114">
+    <p class="sentence"><b>Q114.</b> He tried to ____ his mistake by apologizing sincerely.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q114', true)">rectify</button>
+      <button onclick="checkAnswer('Q114', false)">blur</button>
+      <button onclick="checkAnswer('Q114', false)">mock</button>
+      <button onclick="checkAnswer('Q114', false)">ebb</button>
+    </div>
+    <p class="translation">正解: rectify → 彼は心から謝罪することで自分の誤りを<b>正そうとした</b>。</p>
+  </div>
+
+  <div class="question" id="Q115">
+    <p class="sentence"><b>Q115.</b> The comedian’s ____ made the audience laugh.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q115', true)">wit</button>
+      <button onclick="checkAnswer('Q115', false)">levity</button>
+      <button onclick="checkAnswer('Q115', false)">banter</button>
+      <button onclick="checkAnswer('Q115', false)">mock</button>
+    </div>
+    <p class="translation">正解: wit → そのコメディアンの<b>機知</b>が観客を笑わせた。</p>
+  </div>
+
+  <div class="question" id="Q116">
+    <p class="sentence"><b>Q116.</b> She showed ____ in handling the complex situation.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q116', true)">astuteness</button>
+      <button onclick="checkAnswer('Q116', false)">wit</button>
+      <button onclick="checkAnswer('Q116', false)">charisma</button>
+      <button onclick="checkAnswer('Q116', false)">resolve</button>
+    </div>
+    <p class="translation">正解: astuteness → 彼女は複雑な状況を扱う際に<b>鋭敏さ</b>を示した。</p>
+  </div>
+
+  <div class="question" id="Q117">
+    <p class="sentence"><b>Q117.</b> The harsh ____ was seen as unfair by many employees.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q117', true)">reprisal</button>
+      <button onclick="checkAnswer('Q117', false)">retort</button>
+      <button onclick="checkAnswer('Q117', false)">rebuke</button>
+      <button onclick="checkAnswer('Q117', false)">banter</button>
+    </div>
+    <p class="translation">正解: reprisal → その厳しい<b>報復</b>は多くの従業員に不公平だと見なされた。</p>
+  </div>
+
+  <div class="question" id="Q118">
+    <p class="sentence"><b>Q118.</b> The company promised to ____ its policies to ensure fairness.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q118', true)">revise</button>
+      <button onclick="checkAnswer('Q118', false)">revamp</button>
+      <button onclick="checkAnswer('Q118', false)">rectify</button>
+      <button onclick="checkAnswer('Q118', false)">renown</button>
+    </div>
+    <p class="translation">正解: revise → 会社は公平性を確保するため方針を<b>改定する</b>と約束した。</p>
+  </div>
+
+  <div class="question" id="Q119">
+    <p class="sentence"><b>Q119.</b> The factory will ____ operations next week after maintenance.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q119', true)">resume</button>
+      <button onclick="checkAnswer('Q119', false)">rectify</button>
+      <button onclick="checkAnswer('Q119', false)">revamp</button>
+      <button onclick="checkAnswer('Q119', false)">renown</button>
+    </div>
+    <p class="translation">正解: resume → 工場はメンテナンス後、来週から操業を<b>再開する</b>。</p>
+  </div>
+
+  <div class="question" id="Q120">
+    <p class="sentence"><b>Q120.</b> He ____ to his teacher’s strict rules without complaint.</p>
+    <div class="options">
+      <button onclick="checkAnswer('Q120', true)">acquiesced</button>
+      <button onclick="checkAnswer('Q120', false)">retorted</button>
+      <button onclick="checkAnswer('Q120', false)">rebuked</button>
+      <button onclick="checkAnswer('Q120', false)">bantered</button>
+    </div>
+    <p class="translation">正解: acquiesced → 彼は教師の厳しい規則に不平も言わず<b>黙従した</b>。</p>
+  </div>
+
+  </div> <!-- quiz end -->
+
+</body>
+</html>
