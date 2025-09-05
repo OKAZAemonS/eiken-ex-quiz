@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Unit1 Vocabulary Quiz</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
+    .question { margin-bottom: 20px; }
+    .options button { margin: 3px; }
+    .correct { background-color: lightgreen; }
+    .incorrect { background-color: lightcoral; }
+  </style>
+</head>
+<body>
+  <h1>Unit1 Vocabulary Quiz</h1>
+　<button onclick="shuffleQuestions()">ランダム出題</button>
+  <button onclick="resetQuestions()">リセット</button>
+  <div id="quiz"></div>
+  <script>
+    const items = [
+  // ここに入れます！！！！！！！！
+  {q:"He decided selling key chains was not a ____ business strategy.", 
+   a:"lucrative", 
+   ja:"彼は、キーホルダーの販売は<b>利益の大きい</b>ビジネス戦略ではないと判断した。"},
+  {q:"She ____ all of her savings on overpriced skin treatments.", 
+   a:"squandered", 
+   ja:"彼女は高価なスキントリートメントに貯金をすべて<b>費やした</b>。"},
+  {q:"He keeps the cleaning supplies in a ____ cardboard box.", 
+   a:"flimsy", 
+   ja:"彼は<b>壊れやすい</b>段ボール箱に掃除用品を入れている。"},
+  {q:"The surgeon made an ____ in the chest.", 
+   a:"incision", 
+   ja:"外科医は胸部を<b>切開</b>した。"},
+  {q:"The medicine she takes makes her feel ____.", 
+   a:"lethargic", 
+   ja:"彼女が服用している薬は彼女を<b>けだるい気分</b>にさせる。"},
+  {q:"Winning the award was the ____ of her career.", 
+   a:"pinnacle", 
+   ja:"その賞を受賞したことが彼女のキャリアの<b>絶頂</b>だった。"},
+  {q:"He ____ his anxiety by taking slow, deep breaths.", 
+   a:"allayed", 
+   ja:"彼はゆっくりと深呼吸をすることで不安を<b>和らげた</b>。"},
+  {q:"Swimming across the English Channel is quite the ____.", 
+   a:"feat", 
+   ja:"イギリス海峡を泳いで渡るのは至難の<b>業</b>だ。"},
+  {q:"Thieves ____ the local jewelry store late last night.", 
+   a:"ransacked", 
+   ja:"昨夜遅く、泥棒が地元の宝石店を<b>荒らした</b>。"},
+  {q:"The woman made ____ remarks about her neighbor’s new haircut.", 
+   a:"caustic", 
+   ja:"その女性は、隣人の新しい髪型について<b>辛らつな</b>発言をした。"},
+  {q:"Her father begged her to stop her ____ spending.", 
+   a:"frivolous", 
+   ja:"父親は娘に<b>軽率な</b>出費をやめるよう懇願した。"},
+  {q:"The students are allowed some ____ in deciding what they study.", 
+   a:"latitude", 
+   ja:"学生たちは自分が学ぶについてある程度<b>裁量権</b>が与えられている。"},
+
+  {q:"He is ____ at repairing different kinds of electronics.", 
+   a:"adept", 
+   ja:"彼はさまざまな種類の電子機器の修理に<b>長けている</b>。"},
+  {q:"She is an ____ listener of podcasts about music.", 
+   a:"avid", 
+   ja:"彼女は音楽に関するポッドキャストの<b>熱心な</b>リスナーだ。"},
+  {q:"He was finally granted ____ in Canada after a long wait.", 
+   a:"asylum", 
+   ja:"彼は長い時間を待った末に、ようやくカナダでの<b>亡命</b>を認められた。"},
+  {q:"Her manager was able to quickly ____ the angry customer.", 
+   a:"placate", 
+   ja:"彼女の上司は、その怒っている客をすぐに<b>なだめる</b>ことができた。"},
+  {q:"The collection of antique toys is in ____ condition.", 
+   a:"pristine", 
+   ja:"そのアンティークのおもちゃのコレクションは<b>新品同様の</b>状態だ。"},
+  {q:"She sued the newspaper for publishing ____ false statements about her.", 
+   a:"blatantly", 
+   ja:"彼女は、自分に関する<b>あからさまな</b>虚偽の記述を掲載したとして、その新聞社を訴えた。"},
+  {q:"Applicants are required to wear business ____.", 
+   a:"attire", 
+   ja:"応募者はビジネス用の<b>服装</b>を着用する必要があります。"},
+  {q:"The organization developed as an ____ of the local university.", 
+   a:"offshoot", 
+   ja:"その組織は、地元の大学の<b>分派</b>として発展した。"},
+  {q:"He was just joking, but she was so ____ that she believed him.", 
+   a:"gullible", 
+   ja:"彼は冗談を言っただけだったが、彼女はとても<b>だまされやすい</b>ので彼の言葉を信じた。"},
+  {q:"In ____, I should not have booked this trip in the summer.", 
+   a:"hindsight", 
+   ja:"<b>あとから考えると</b>、私はこの旅行を夏に予約すべきではなかった。"},
+  {q:"The soldiers were killed in an ____.", 
+   a:"ambush", 
+   ja:"その兵士たちは<b>待ち伏せ</b>によって殺された。"},
+  {q:"At the ____ of his career, he was interviewing famous celebrities.", 
+   a:"zenith", 
+   ja:"キャリアの<b>絶頂</b>期には、彼は著名人たちにインタビューしていた。"},
+
+  {q:"Despite a serious diagnosis, your ____ is very good.", 
+   a:"prognosis", 
+   ja:"診断結果は深刻だが、あなたの<b>予後</b>は非常に良好だ。"},
+  {q:"She is ____ about how she plans work events.", 
+   a:"meticulous", 
+   ja:"職場でのイベントをどのように計画するかについて、彼女は<b>細心の注意を払っている</b>。"},
+  {q:"The dormitory’s decision to enforce a curfew caused much ____.", 
+   a:"acrimony", 
+   ja:"門限を設けるという寮の決定によって、非常に<b>とげとげしい雰囲気</b>が生じた。"},
+  {q:"He has always had a ____ for violent behavior.", 
+   a:"propensity", 
+   ja:"彼には暴力的な行動をする<b>傾向</b>がずっとある。"},
+  {q:"The shop’s creative window displays ____ many customers.", 
+   a:"entice", 
+   ja:"その店の独創的なウィンドウディスプレイは多くの客を<b>魅了している</b>。"},
+  {q:"His arrogance ____ him from his coworkers.", 
+   a:"alienated", 
+   ja:"彼は傲慢なために同僚から<b>疎外された</b>。"},
+  {q:"She was ____ after new evidence proved her innocence.", 
+   a:"exonerated", 
+   ja:"新しい証拠によって無実が証明され、彼女は<b>無罪となった</b>。"},
+  {q:"Nobody in the class could hear the teacher over the ____.", 
+   a:"clamor", 
+   ja:"<b>騒音</b>の中、クラスの誰も先生の話が聞こえなかった。"},
+  {q:"The war continued without ____ for over four years.", 
+   a:"respite", 
+   ja:"戦争は４年以上の間、<b>休むことなく</b>続いた。"},
+  {q:"They ____ together for warmth.", 
+   a:"huddle", 
+   ja:"彼らは暖を取るために<b>身を寄せ合った</b>。"},
+  {q:"That episode was just a ____ of her imagination.", 
+   a:"figment", 
+   ja:"そのエピソードは彼女の<b>空想の産物</b>にすぎなかった。"},
+  {q:"Her ____ personality allowed her to climb the corporate ladder.", 
+   a:"tenacious", 
+   ja:"<b>粘り強い</b>性格のおかげで、彼女は出世階段を登っていった。"},
+
+  {q:"He ____ the benefits of yoga to all of his clients.", 
+   a:"extolled", 
+   ja:"彼はすべての顧客にヨガのメリットを<b>絶賛した</b>。"},
+  {q:"The boy has a strong ____ to visiting the dentist.", 
+   a:"aversion", 
+   ja:"その男の子は歯医者に行くのが<b>大嫌い</b>だ。"},
+  {q:"At such an expensive hotel, guests expect the rooms to be ____.", 
+   a:"immaculate", 
+   ja:"そのような高価なホテルでは、宿泊客は部屋が<b>清潔</b>であることを期待する。"},
+  {q:"Unlike her ____ sister, she has a hard time talking to new people.", 
+   a:"gregarious", 
+   ja:"<b>社交的な</b>妹とは違い、彼女は初対面の人と話すのに苦労している。"},
+  {q:"She was ____ at work because of her loud personality.", 
+   a:"ostracized", 
+   ja:"彼女は騒々しい性格のために職場で<b>仲間外れにされた</b>。"},
+  {q:"His ____ behavior at the conference shocked everyone there.", 
+   a:"uncouth", 
+   ja:"会議での彼の<b>無礼</b>な態度は驚くべきもので、そこにいた全員に衝撃を与えた。"},
+  {q:"The teacher quickly reviewed the ____ points of the previous lesson.", 
+   a:"salient", 
+   ja:"先生は前回のレッスンの<b>重要な</b>ポイントをさっとおさらいした。"},
+  {q:"In the film, animals escape from the zoo and cause all kinds of ____.", 
+   a:"mayhem", 
+   ja:"その映画の中で、動物たちは動物園から逃げ出し、ありとあらゆる<b>騒動</b>を引き起こす。"},
+  {q:"That drug company was founded in 1830, and now is ____.", 
+   a:"defunct", 
+   ja:"その製薬会社は1830年に設立されたが、もう<b>存在していない</b>。"},
+  {q:"He was ____ of the idea of getting on an airplane.", 
+   a:"petrified", 
+   ja:"飛行機に乗る考えを聞いただけで彼は<b>身がすくんだ</b>。"},
+  {q:"She ____ her right to speak with an attorney.", 
+   a:"invoked", 
+   ja:"彼女は弁護士に面会する権利を<b>行使した</b>。"},
+  {q:"The minister was ____ after everyone discovered his fraudulent spending.", 
+   a:"rebuked", 
+   ja:"その大臣は、不正出費が暴かれたことで、<b>厳しく非難された</b>。"},
+
+  {q:"The movie director has received many ____ and awards.", 
+   a:"accolades", 
+   ja:"その映画監督は多くの<b>称賛</b>と賞を受けてきた。"},
+  {q:"He found ____ in art after the passing of his wife.", 
+   a:"solace", 
+   ja:"妻を亡くしたあと、彼は芸術に<b>慰め</b>を見いだした。"},
+  {q:"She has always been a ____ supporter of LGBTQ+ rights.", 
+   a:"fervent", 
+   ja:"彼女はずっとLGBTQ+の権利を<b>熱心に</b>支持してきた。"},
+  {q:"Many older people believe the younger generation is ____ about politics.", 
+   a:"apathetic", 
+   ja:"多くの高齢者は、若い世代が政治に<b>無関心</b>だと考えている。"},
+  {q:"The oil crisis acted as a ____ for searching for ways to save energy.", 
+   a:"catalyst", 
+   ja:"石油危機は省エネの方法を模索する<b>きっかけ</b>となった。"},
+  {q:"His enthusiasm for his work started to ____ after so much overtime.", 
+   a:"wane", 
+   ja:"彼の仕事への熱意は、長時間残業のあと<b>衰え</b>始めた。"},
+  {q:"Her ____ with the association helped her political campaign.", 
+   a:"clout", 
+   ja:"その協会に対する彼女の<b>影響力</b>は、彼女の政治活動を助けた。"},
+  {q:"The city council ____ the decision taken by the committee.", 
+   a:"overrode", 
+   ja:"市議会は委員会が下した決定を<b>覆した</b>。"},
+  {q:"In July of 1776, the American colonies ____ from Great Britain.", 
+   a:"seceded", 
+   ja:"1776年7月、アメリカ植民地はイギリスから<b>独立</b>した。"},
+  {q:"He was ____ by the treatment he received at the clinic.", 
+   a:"appalled", 
+   ja:"彼は診療所で受けた治療に<b>ぞっとした</b>。"},
+  {q:"There was a TV show that worked to ____ various myths.", 
+   a:"debunk", 
+   ja:"さまざまな作り話を<b>暴こう</b>としたテレビ番組があった。"},
+  {q:"She used to ____ her anger by breaking pencils.", 
+   a:"vent", 
+   ja:"彼女はよく鉛筆を折って怒りを<b>発散</b>していた。"},
+
+  {q:"The doctor told him he would need a couple of weeks to ____.", 
+   a:"recuperate", 
+   ja:"医者は彼に、<b>回復</b>には2、3週間要すると言った。"},
+  {q:"The ideal employee will ____ the values of our company.", 
+   a:"epitomize", 
+   ja:"理想的な従業員は、当社の価値を<b>体現</b>してくれるだろう。"},
+  {q:"The ____ between the two sisters has widened recently.", 
+   a:"rift", 
+   ja:"2人の姉妹の間の<b>亀裂</b>は最近広がった。"},
+  {q:"Lawyers must not ____ confidential client information.", 
+   a:"divulge", 
+   ja:"弁護士はクライアントの機密情報を<b>漏らし</b>てはならない。"},
+  {q:"The store’s stock of turkeys ____ close to Thanksgiving.", 
+   a:"dwindled", 
+   ja:"店の七面鳥の在庫は、感謝祭が近づくにつれて<b>少しずつ減った</b>。"},
+  {q:"The blue lines on this graph ____ company profits.", 
+   a:"denote", 
+   ja:"このグラフの青い線は、会社の利益を<b>示して</b>いる。"},
+  {q:"The famine caused a mass ____ of refugees.", 
+   a:"exodus", 
+   ja:"その飢饉によって、難民の<b>大流出</b>が起きた。"},
+  {q:"____ illnesses can be passed down from generation to generation.", 
+   a:"Hereditary", 
+   ja:"<b>遺伝性</b>の病気は、代々受け継がれることがある。"},
+  {q:"We need to find evidence to ____ your story.", 
+   a:"corroborate", 
+   ja:"私たちは、あなたの話を<b>裏づける</b>証拠を見つける必要がある。"},
+  {q:"His ____ personality makes him difficult to talk to.", 
+   a:"inscrutable", 
+   ja:"何を考えているか<b>わからない</b>性格のため、彼は話しかけにくい。"},
+  {q:"The shelter takes in ____ animals and helps them recover.", 
+   a:"emaciated", 
+   ja:"そのシェルターは<b>やせ衰えた</b>動物たちを受け入れ、回復するのを助けている。"},
+  {q:"Her poor attitude was taken as a personal ____ by everyone.", 
+   a:"affront", 
+   ja:"彼女の態度の悪さは、誰からも個人的な<b>侮辱</b>として受け止められた。"},
+
+  {q:"After the ____ involving missing money, he was fired.", 
+   a:"fiasco", 
+   ja:"お金の紛失を伴う<b>大失敗</b>のあと、彼は解雇された。"},
+  {q:"She acts ____ and carefree even around her family members.", 
+   a:"aloof", 
+   ja:"彼女は家族の前ですら、<b>無愛想で</b>気ままに振る舞う。"},
+  {q:"Donating money is not always as ____ as it may appear.", 
+   a:"altruistic", 
+   ja:"寄付は見かけほど<b>利他的</b>であるとは限らない。"},
+  {q:"He was in a ____ about where to go on vacation.", 
+   a:"quandary", 
+   ja:"彼は休暇にどこへ行こうかと<b>悩んで</b>いた。"},
+  {q:"Although she ____ the story a little bit, it was mostly true.", 
+   a:"embellished", 
+   ja:"彼女は話を少し<b>盛った</b>が、それはおおむね事実だ。"},
+  {q:"You cannot ____ on the promise you made to your mother.", 
+   a:"renege", 
+   ja:"母親とした約束を<b>反故にして</b>はいけない。"},
+  {q:"I gave her a ____ when she began to nod off.", 
+   a:"nudge", 
+   ja:"彼女がうとうとし始めたので、私は彼女を<b>軽く小突いた</b>。"},
+  {q:"Dozens of young people were ____ by the cult.", 
+   a:"indoctrinated", 
+   ja:"何十人もの若者がそのカルト教団に<b>洗脳</b>された。"},
+  {q:"He showed no ____ for his crimes.", 
+   a:"remorse", 
+   ja:"彼には、自分が犯した罪に対する<b>反省</b>の色が見られなかった。"},
+  {q:"He somehow ____ himself into thinking he was popular in school.", 
+   a:"deluded", 
+   ja:"彼はどういうわけか自分が学校で人気があると思い<b>込んだ</b>。"},
+  {q:"Several leaders tried to ____ the tension between the two countries.", 
+   a:"defuse", 
+   ja:"何人かの指導者が両国間の緊張を<b>和らげ</b>ようとした。"},
+  {q:"The president is in a ____ situation right now.", 
+   a:"precarious", 
+   ja:"大統領は今、<b>危うい状況</b>にある。"},
+
+  {q:"The students worked to ____ information about their fundraiser.", 
+   a:"disseminate", 
+   ja:"生徒たちは募金活動に関する情報を<b>広める</b>ために働いた。"},
+  {q:"His children were ____ by his change in behavior.", 
+   a:"baffled", 
+   ja:"彼の子どもたちは彼の行動の変化に<b>困惑</b>していた。"},
+  {q:"She does not have the energy to complete even ____ tasks.", 
+   a:"menial", 
+   ja:"彼女には<b>単純作業</b>すらこなす気力がない。"},
+  {q:"He received some ____ advice about his job from his wife.", 
+   a:"candid", 
+   ja:"彼は妻から仕事について<b>率直な</b>アドバイスを受けた。"},
+  {q:"The customer became so ____ that the staff called the police.", 
+   a:"irate", 
+   ja:"客が<b>激怒した</b>ので、スタッフは警察に連絡した。"},
+  {q:"The soccer players formed a ____ and always hung out together.", 
+   a:"clique", 
+   ja:"サッカー選手たちは<b>徒党</b>を組んで、いつも一緒に行動していた。"},
+  {q:"Scientists expect that ____ outbreaks will continue to occur.", 
+   a:"sporadic", 
+   ja:"科学者たちは、<b>散発的な</b>流行が引き続き起こると予想している。"},
+  {q:"Public criticism of the mayor’s decision took months to ____.", 
+   a:"abate", 
+   ja:"市長の決定に対する市民の批判は、<b>収まる</b>までに数か月かかった。"},
+  {q:"She grew up in an ____ town in the mountains of Italy.", 
+   a:"idyllic", 
+   ja:"彼女はイタリアの山間にある<b>のどかな</b>町で育った。"},
+  {q:"From the beautiful presentation to the unique blend of flavors, the meal was ____.", 
+   a:"exquisite", 
+   ja:"美しい盛り付けから独特にブレンドされた味付けに至るまで、その食事は<b>非常に素晴らしかった</b>。"},
+  {q:"Her reputation was ____ when people found out she was abusive.", 
+   a:"tarnished", 
+   ja:"暴力的だということが知られて、彼女の評判は<b>落ちた</b>。"},
+  {q:"His strange management style was ____ by the incredible performance of his subordinates.", 
+   a:"vindicated", 
+   ja:"彼の風変わりな経営スタイルは、部下たちの素晴らしい業績によってその<b>正しさが裏づけられた</b>。"},
+
+  {q:"It is not really an ____ time to hold a vote.", 
+   a:"auspicious", 
+   ja:"投票を行うにはあまり<b>よい時期</b>ではない。"},
+  {q:"The pastry chef’s ____ attention to detail makes her cakes beautiful.", 
+   a:"fastidious", 
+   ja:"<b>細部までこだわる</b>ので、そのパティシエのケーキは美しい。"},
+  {q:"The book perfectly ____ what it is like to work as a nurse.", 
+   a:"encapsulates", 
+   ja:"看護師として働くとはどういうことかを、その本は完全に<b>要約している</b>。"},
+  {q:"She taught her children to be ____ to their teachers.", 
+   a:"deferential", 
+   ja:"先生に対して<b>敬意を払う</b>べきだと、彼女は子どもたちに教えた。"},
+  {q:"Nobody did anything to stop that region from being ____.", 
+   a:"annexed", 
+   ja:"その地域が<b>併合される</b>のを止めるために誰も何もしなかった。"},
+  {q:"The ____ smell of sewage made the man gag.", 
+   a:"pungent", 
+   ja:"下水の<b>刺激臭</b>に、その男性は吐き気を催した。"},
+  {q:"Everything that you have said so far has been pure ____.", 
+   a:"conjecture", 
+   ja:"あなたがこれまでに述べてきたことはすべて、まったくの<b>推測</b>だ。"},
+  {q:"She could not even ____ the energy to brush her teeth.", 
+   a:"muster", 
+   ja:"彼女は歯を磨く気力すら<b>湧かなかった</b>。"},
+  {q:"The team ____ the game because of a violent act.", 
+   a:"forfeited", 
+   ja:"そのチームは暴力行為により、試合を<b>没収</b>された。"},
+  {q:"The diver could not see anything in the ____ water.", 
+   a:"murky", 
+   ja:"<b>濁った</b>水の中で、ダイバーは何も見えなかった。"},
+  {q:"The writer has frequently been accused of ____.", 
+   a:"bigotry", 
+   ja:"その作家は<b>偏狭な発言</b>でしばしば非難を浴びている。"},
+  {q:"He ____ his income by doing freelance work on the side.", 
+   a:"augments", 
+   ja:"彼は副業としてフリーランスの仕事をすることで収入を<b>増やしている</b>。"}
+  
+    ];
+
+  function shuffle(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  }
+
+  function getOptions(answer) {
+    let opts = [answer];
+    while (opts.length < 4) {
+      let rand = items[Math.floor(Math.random() * items.length)].a;
+      if (!opts.includes(rand)) opts.push(rand);
+    }
+    return shuffle(opts);
+  }
+
+  function render() {
+    const quiz = document.getElementById("quiz");
+    quiz.innerHTML = "";
+    items.forEach((item, idx) => {
+      const div = document.createElement("div");
+      div.className = "question";
+      div.innerHTML = `
+        <p class="sentence"><b>Q${idx+1}.</b> ${item.q}</p>
+        <div class="options">
+          ${getOptions(item.a).map(opt =>
+            `<button onclick="check(this,'${item.a}')">${opt}</button>`
+          ).join("")}
+        </div>
+        <p class="translation" style="display:none;">${item.ja}</p>
+      `;
+      quiz.appendChild(div);
+    });
+  }
+
+  function check(btn, correct) {
+  const parent = btn.parentElement.parentElement;
+  if (btn.textContent === correct) {
+    btn.classList.add("correct");
+    parent.querySelector(".translation").style.display = "block";
+    // 正解が選ばれたら他のボタンも無効化
+    Array.from(btn.parentElement.children).forEach(b => b.disabled = true);
+  } else {
+    btn.classList.add("incorrect");
+    btn.disabled = true; // 間違えたボタンだけ無効化
+  }
+}
+
+  function shuffleQuestions() {
+    shuffle(items);
+    render();
+  }
+
+  function resetQuestions() {
+    items.sort((a,b)=>a.q.localeCompare(b.q));
+    render();
+  }
+
+  render();
+
+
+</script>
+</body>
+</html>
