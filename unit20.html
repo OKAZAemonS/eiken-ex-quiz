@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Unit20 Vocabulary Quiz</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
+    .question { margin-bottom: 20px; }
+    .options button { margin: 3px; }
+    .correct { background-color: lightgreen; }
+    .incorrect { background-color: lightcoral; }
+  </style>
+</head>
+<body>
+  <h1>Unit20 Vocabulary Quiz</h1>
+　<button onclick="shuffleQuestions()">ランダム出題</button>
+  <button onclick="resetQuestions()">リセット</button>
+  <div id="quiz"></div>
+  <script>
+    const items = [
+  // ここに入れます！！！！！！！！
+  {q:"The salesperson ____ a set of free headphones with my phone purchase.", 
+   a:"threw in", 
+   ja:"私が携帯電話を購入すると、販売員は無料のヘッドフォンを<b>おまけに付けてくれた</b>。"},
+  {q:"The country ____ its neighboring countries in the field of technology.", 
+   a:"lags behind", 
+   ja:"その国は科学技術分野で近隣諸国に<b>後れを取っている</b>。"},
+  {q:"You should ____ 30 minutes of walking a day.", 
+   a:"shoot for", 
+   ja:"あなたは１日30分歩くことを<b>目指す</b>といいでしょう。"},
+  {q:"He was ____ for a promotion, though he deserved one.", 
+   a:"passed over", 
+   ja:"昇進してしかるべきだったのに、彼の昇進は<b>見送ら</b>れた。"},
+  {q:"Thousands of tourists ____ the area to see the cherry blossoms.", 
+   a:"descend on", 
+   ja:"桜を見るため、何千人もの観光客がその地域に<b>押し寄せた</b>。"},
+  {q:"It took several minutes for the meaning of her words to ____.", 
+   a:"sink in", 
+   ja:"彼女の言葉の意味が<b>理解できる</b>まで数分かかった。"},
+  {q:"The kids ____ with excitement when the character came onto the stage.", 
+   a:"bubbled over", 
+   ja:"そのキャラクターがステージに登場すると、子どもたちは興奮して<b>大はしゃぎした</b>。"},
+  {q:"The company ____ into online sales.", 
+   a:"branched out", 
+   ja:"その会社はオンライン販売に<b>乗り出した</b>。"},
+  {q:"You can ____ your life by trying a new hobby.", 
+   a:"spice up", 
+   ja:"新しい趣味を始めることで、生活に<b>味わいを加える</b>ことができる。"},
+  {q:"Her voice ____ as she realized no one was listening to her.", 
+   a:"trailed off", 
+   ja:"誰も自分の話を聞いていないことに気づき、彼女の声は<b>次第に小さくなった</b>。"},
+  {q:"He was fired for ____ some of the profits of the sales he made.", 
+   a:"skimming off", 
+   ja:"彼は自分の売上の利益の一部を<b>横領して</b>解雇された。<b>「上澄をすくいとる」が原義</b>"},
+  {q:"Her heart ____ with joy when her baby laughed for the first time.", 
+   a:"brimmed over", 
+   ja:"自分の赤ん坊が初めて笑ったとき、彼女の心は喜びに<b>あふれた</b>。"},
+  {q:"The bus driver ____ the names on the list as the passengers arrived.", 
+   a:"struck off", 
+   ja:"バス運転手は、乗客が到着するたびにリストの名前を<b>消していっ</b>た。"},
+  {q:"The server ____ the menu before she had a chance to look at it.", 
+   a:"whisked away", 
+   ja:"彼女が見る間もなく、ウェイターはメニューを<b>さっと持ち去っ</b>た。<b>whisk offも似た意味</b>"},
+
+  {q:"He was running out of savings, so he ____ for the first job he could find.", 
+   a:"settled", 
+   ja:"所持金が底をつきかけていたので、彼は最初に見つけた仕事で<b>妥協することにした</b>。"},
+  {q:"Although she went to college, she ____ed out after one year.", 
+   a:"flunk", 
+   ja:"彼女は大学に進学は行ったものの、１年後に<b>成績不良で退学した</b>。"},
+  {q:"We cannot solve the problem by ____ing it over.", 
+   a:"paper", 
+   ja:"<b>取り繕っ</b>ても、その問題は解決できない。"},
+  {q:"With food costs going up, the store’s only option is to ____ up prices.", 
+   a:"hike", 
+   ja:"食料品の費用が高騰する中、その店には<b>値上げをする</b>以外選択肢がない。"},
+  {q:"The stains on my shirt will not ____ out.", 
+   a:"wash", 
+   ja:"シャツについた染みがいくら<b>洗っても落ち</b>ない。"},
+  {q:"She only got the promotion because she ____s up to the boss.", 
+   a:"suck", 
+   ja:"彼女は上司に<b>こびを売っ</b>て昇進しただけだ。"},
+  {q:"I ____ed off a message to him.", 
+   a:"dash", 
+   ja:"私は彼への伝言を<b>急いで書いた</b>。"},
+  {q:"She looked up as she ____ed back tears.", 
+   a:"choked", 
+   ja:"彼女は涙を<b>こらえ</b>ながら顔を上げた。"},
+  {q:"The construction company agreed to ____ off several thousand dollars.", 
+   a:"lop", 
+   ja:"その建設会社は、数千ドル<b>値下げする</b>ことに同意した。"},
+  {q:"She has been ____ing at her savings ever since she lost her job.", 
+   a:"nibbl", 
+   ja:"彼女は仕事を失って以来ずっと貯蓄を<b>切り崩して</b>いる。"},
+  {q:"The students’ behavior was so bad that their teacher ____ed out on them.", 
+   a:"walk", 
+   ja:"生徒たちの態度があまりにひどかったので、教師は彼らを<b>見捨て</b>た。"},
+  {q:"He ____ out for a larger raise and eventually got it.", 
+   a:"held", 
+   ja:"彼はより大幅な昇給を<b>要求して粘り</b>、最終的にそれを手に入れた。"},
+  {q:"This film ____ me in from the first scene.", 
+   a:"drew", 
+   ja:"私は冒頭のシーンからこの映画に<b>引き込まれ</b>た。"},
+  {q:"We will need more funding if we want to ____ through with this plan.", 
+   a:"follow", 
+   ja:"私たちがその計画を<b>やり遂げ</b>たいければ、さらに資金が必要だ。"},
+
+    {q:"She got in trouble for ____ to her teacher.", 
+   a:"mouthing off", 
+   ja:"彼女は先生に<b>口答えし</b>て問題になった。"},
+  {q:"The family ____ on a cargo ship to escape their country.", 
+   a:"stowed away", 
+   ja:"一家は国から逃れるため、貨物船で<b>密航した</b>。"},
+  {q:"____ or you will catch a cold.", 
+   a:"bundle up", 
+   ja:"<b>暖かく着込ま</b>ないと、風邪をひくよ。"},
+  {q:"She ____ the atmosphere of the night market in Taiwan.", 
+   a:"soaked up", 
+   ja:"彼女は台湾の夜市の雰囲気を<b>満喫した</b>。"},
+  {q:"My wife ____ me to go on a diet.", 
+   a:"keeps after", 
+   ja:"妻は私にダイエットしろと<b>しつこく言ってくる</b>。　<b>keep after A to doで「Aに〜するようしつこく言う」という意味</b>"},
+  {q:"After being ____ in a car for hours, the kids were really bored.", 
+   a:"cooped up", 
+   ja:"車の中に何時間も<b>閉じ込め</b>られて、子どもたちはすっかり退屈していた。"},
+  {q:"The company is making plans to ____ customers.", 
+   a:"claw back", 
+   ja:"その会社は顧客を<b>取り戻す</b>計画を立てている。"},
+  {q:"He began to ____ the front runner.", 
+   a:"gain on", 
+   ja:"彼は先頭走者との差<b>距離を詰め</b>始めた。"},
+  {q:"Don’t ____ me! Tell me what she said.", 
+   a:"hold out on", 
+   ja:"<b>隠さ</b>ないで！ 彼女が何と言ったか教えて。"},
+  {q:"My father ____ when I told him that I quit school.", 
+   a:"flipped out", 
+   ja:"私が学校をやめたと言うと、父は<b>激怒した</b>。"},
+  {q:"Many companies are trying to ____ that market.", 
+   a:"get in on", 
+   ja:"多くの企業がその市場に<b>参入し</b>ようとしている。"},
+  {q:"He ____ piano but gave up after a few months.", 
+   a:"dabbled in", 
+   ja:"彼はピアノに<b>手を出してみた</b>が、数か月であきらめた。"},
+  {q:"They would not ____ to any threats.", 
+   a:"knuckle under", 
+   ja:"彼らはどんな脅しにも<b>屈服し</b>ようとしなかった。"},
+  {q:"I ____ him when I first saw him.", 
+   a:"took to", 
+   ja:"初めて会ったときに私は彼を<b>好きに</b>なった。"},
+
+  {q:"The secretary ____ the managing director in the meeting.", 
+   a:"sat in for", 
+   ja:"秘書はその会議で常務の<b>代理を務めた</b>。"},
+  {q:"The teacher told the students they needed to ____ if they wanted to leave on time.", 
+   a:"pipe down", 
+   ja:"先生は生徒たちに、時間通りに帰りたければ<b>静かにする</b>よう言った。"},
+  {q:"The mistakes were ____ and corrected.", 
+   a:"scratched out", 
+   ja:"誤りは<b_>上に線を引かれ</b>、訂正された。"},
+  {q:"This song will certainly ____ them ____.", 
+   a:"perk up", 
+   ja:"この歌はきっと彼らを<b>元気づける</b>だろう。"},
+  {q:"I ____ the surface with sandpaper and then painted it.", 
+   a:"smoothed down", 
+   ja:"私は、紙やすりで表面を<b>滑らかにして</b>からペンキを塗った。"},
+  {q:"You need to ____ some old branches.", 
+   a:"thin out", 
+   ja:"古い枝を少し<b>間引く</b>必要がある。"},
+  {q:"There is no need to ____ your accomplishments during a job interview.", 
+   a:"talk down", 
+   ja:"面接で自分の業績を<b>卑下する</b>必要はない。"},
+  {q:"He is always ____ me ____ and finding my faults.", 
+   a:"shoving around", 
+   ja:"彼はいつも私を<b>こき使い</b>、あら探しばかりしている。"},
+  {q:"Music ____ in the CD store.", 
+   a:"blared out", 
+   ja:"CDショップの店内では音楽が<b>がんがん鳴り響いていた</b>。"},
+  {q:"The lecturer ____ for hours.", 
+   a:"droned on", 
+   ja:"講師は何時間も<b>だらだらとしゃべった</b>。"},
+  {q:"She always ____ the same hockey team even though they never win.", 
+   a:"roots for", 
+   ja:"まるで勝てないのに、彼女はずっと同じホッケーチームを<b>応援している</b>。"},
+  {q:"She ____ her daughter ____ to school and went to work.", 
+   a:"packed off", 
+   ja:"彼女は娘を学校へ<b>送り出し</b>、仕事へ出かけた。"},
+  {q:"She got a job and stopped ____ us.", 
+   a:"sponging off", 
+   ja:"彼女は仕事を得て、私たちに<b>たかる</b>のをやめた。"},
+  {q:"The boy thinks he can ____ being lazy.", 
+   a:"get away with", 
+   ja:"その男の子は、怠けても<b>罰を受けない</b>と思っている。<b>(悪いことをして)無事に逃れる、を持ち逃げする、の意</b>"},
+
+  {q:"She told me to ____ for a while.", 
+   a:"shove off", 
+   ja:"彼女は私にしばらく<b>どこかに行って</b>ほしいと言った。"},
+  {q:"They are ____ trouble by denying access to young people.", 
+   a:"storing up", 
+   ja:"彼らは若者を施設から拒否することで、トラブルを<b>招い</b>ている。"},
+  {q:"I do not ____ their help at all.", 
+   a:"reckon on", 
+   ja:"私は、彼らの助けをまったく<b>当てにして</b>いない。"},
+  {q:"The reporters are trying to ____ the discussion because they have nothing else to talk about.", 
+   a:"spin out", 
+   ja:"記者たちは特に話すことがないので、議論を<b>引き延ばそ</b>うとしている。"},
+  {q:"Would you mind ____ the client about those files I need?", 
+   a:"chasing up", 
+   ja:"私が必要なあのファイルをお客さんに<b>催促し</b>てもらえませんか。"},
+  {q:"That noodle shop ____ a criminal organization.", 
+   a:"fronts for", 
+   ja:"そのそば屋は犯罪組織の<b>隠れみのになっている</b>。"},
+  {q:"During the meeting, she ____ to answer an important call.", 
+   a:"ducked out", 
+   ja:"会議の途中、彼女は大事な電話に出るため<b>抜け出した</b>。"},
+  {q:"The pop idol has gotten used to people ____ him all the time.", 
+   a:"fawning over", 
+   ja:"そのアイドルは、人々がいつも自分に<b>へつらう</b>のに慣れてしまっていた。"},
+  {q:"The dog’s high-pitched bark really ____ my nerves.", 
+   a:"grates on", 
+   ja:"その犬の甲高い鳴き声は本当に私の神経を<b>逆なでする</b>。"},
+  {q:"The economic boom is slowly beginning to ____.", 
+   a:"tail off", 
+   ja:"景気はゆっくりと<b>後退</b>し始めている。"},
+  {q:"The hikers ____ a shelter using tree branches and leaves.", 
+   a:"rigged up", 
+   ja:"ハイカーたちは、木の枝や葉っぱを使ってシェルターを<b>作った</b>。"},
+  {q:"She ____ her hunger by eating a snack a few hours after breakfast.", 
+   a:"staved off", 
+   ja:"彼女は朝食の数時間後に軽食を食べて、空腹を<b>しのいだ</b>。"},
+  {q:"His parents told him he should ____ his kids a bit.", 
+   a:"let up on", 
+   ja:"両親は彼に、少し子どもたちに<b>優しくし(手心を加え)</b>たほうがよいと言った。"},
+  {q:"The volcanic eruption ____ all of the city.", 
+   a:"wiped out", 
+   ja:"火山の噴火で、その街は<b>全滅</b>した。"},
+
+  {q:"The development of the smartphone ____ a new technological era.", 
+   a:"ushered in", 
+   ja:"スマートフォンの開発は、新しい技術の時代の<b>先駆けとなった</b>。"},
+  {q:"We managed to ____ all our problems.", 
+   a:"sort out", 
+   ja:"私たちは何とかすべての問題を<b>解決</b>した。"},
+  {q:"The company has been ____ its overseas businesses.", 
+   a:"phasing out", 
+   ja:"その会社は海外の事業を<b>段階的に廃止し</b>ている。"},
+  {q:"The Supreme Court ____ the law, saying it was unconstitutional.", 
+   a:"struck down", 
+   ja:"最高裁判所は、違憲であるとしてその法律を<b>無効とした</b>。"},
+  {q:"After her initial enthusiasm ____, she stopped going to piano lessons.", 
+   a:"wore off", 
+   ja:"最初の熱意が<b>薄れる</b>と、彼女はピアノのレッスンに行くのをやめた。"},
+  {q:"We cannot afford to ____ more staff.", 
+   a:"take on", 
+   ja:"私たちにはこれ以上スタッフを<b><雇う/b>余裕はない。"},
+  {q:"She finally ____ and told the truth.", 
+   a:"broke down", 
+   ja:"彼女はついに<b>折れ</b>、真実を話した。"},
+  {q:"The doctor advised him to ____ some sports.", 
+   a:"take up", 
+   ja:"医者は彼に何かスポーツを<b>始める</b>よう勧めた。"},
+  {q:"You shouldn’t ____ the chance to go to Cambodia for free.", 
+   a:"pass up", 
+   ja:"ただでカンボジアに行けるチャンスを<b>逃す</b>手はない。"},
+  {q:"He ____ alcohol to relieve stress.", 
+   a:"turned to", 
+   ja:"ストレスを解消するため、彼は酒に<b>頼った</b>。"},
+  {q:"He ____ his experience as a lawyer to give people advice.", 
+   a:"draws on", 
+   ja:"彼は弁護士としての経験を<b>生かし</b>、人々に助言を与えている。"},
+  {q:"Let’s ____ and see what happens next.", 
+   a:"stick around", 
+   ja:"<b>もう少し残って</b>、このあとどうなるか見ていこう。"},
+  {q:"He was disqualified from the chess tournament for failure to ____ the rules.", 
+   a:"abide by", 
+   ja:"ルールを<b>守ら</b>なかったため、彼はチェス大会で失格となった。"},
+  {q:"He had experience with e-commerce, so she asked him to ____ with his opinion.", 
+   a:"weigh in", 
+   ja:"彼にはeコマースの経験があったので、彼女は彼に<b>議論に加わって</b>意見を述べてほしいと頼んだ。"},
+
+  {q:"The ball ____ my glove and rolled to center field.", 
+   a:"glanced off", 
+   ja:"ボールは私のグラブを<b>かすめ</b>、センターへ転がった。"},
+  {q:"He was ____ profits from suppliers.", 
+   a:"raking off", 
+   ja:"彼は仕入先から利益<b>供与を受け</b>ていた。"},
+  {q:"We took a walk down the beach, ____ the beautiful sunset.", 
+   a:"taking in", 
+   ja:"私たちは、美しい夕日を<b>眺めながら</b>ビーチを散歩した。"},
+  {q:"Some countries try to ____ the impact of global warming.", 
+   a:"play down", 
+   ja:"地球温暖化の影響を<b>実際より軽く扱お</b>うとする国もある。"},
+  {q:"I ____ old magazines and put them in the closet.", 
+   a:"boxed up", 
+   ja:"私は古い雑誌を<b>箱に詰め</b>、クローゼットに入れた。"},
+  {q:"I ____ the topic of marriage with him.", 
+   a:"brought up", 
+   ja:"私は彼に結婚の話題を<b>持ち出してみた</b>。"},
+  {q:"My father often ____ me for no reason.", 
+   a:"blows up at", 
+   ja:"父はよく、理由もなく私に<b>かんしゃくを起こす</b>。"},
+  {q:"Nothing appears on the screen when I ____ my computer.", 
+   a:"boot up", 
+   ja:"コンピュータを<b>起動し</b>ても、画面に何も表示されない。"},
+  {q:"I have to ____ the old paint first.", 
+   a:"chip off", 
+   ja:"私はまず古い塗装を<b>はがさ</b>なければならない。"},
+  {q:"I ____ the curb and fell down on my face.", 
+   a:"tripped over", 
+   ja:"私は縁石に<b>つまずいて</b>顔から転んだ。"},
+  {q:"She ____ and spoke to the boy.", 
+   a:"crouched down", 
+   ja:"彼女は<b>かがん</b>で男の子に話しかけた。"},
+  {q:"The scene ____ on a man sitting in the cockpit of a spaceship.", 
+   a:"fades in", 
+   ja:"そのシーンは、宇宙船のコックピットに座っている男性のところで<b>フェードインする</b>。"},
+  {q:"The complex application instructions ____ applicants with poor attention to detail.", 
+   a:"filter out", 
+   ja:"難解な応募要項によって、注意力の乏しい応募者は<b>ふるいにかけ</b>られる。"},
+  {q:"The robber ____ him ____ and took his bag.", 
+   a:"beat up", 
+   ja:"強盗は彼に<b>殴る蹴るの暴行を加え(叩きのめし)</b>、かばんを奪った。"},
+
+  {q:"His mother ____ the baby constantly when she comes to visit.", 
+   a:"fusses over", 
+   ja:"彼の母親は、おばあさんになるとずっと赤ん坊を<b>あやしている</b>。<b>　(些細なこと)にこだわる、騒ぎ立てる、の意味もある</b>"},
+  {q:"I ____ the money for the trip.", 
+   a:"scraped together", 
+   ja:"私は旅費を<b>かき集めた</b>。"},
+  {q:"The deadline for the paper ____.", 
+   a:"slipped by", 
+   ja:"レポートの締め切りが<b>いつの間にか過ぎていた</b>。"},
+  {q:"Relief supplies were ____ to the sufferers.", 
+   a:"dealt out", 
+   ja:"被災者に支援物資が<b>配ら</b>れた。"},
+  {q:"She ____ the politician by asking him some easy questions first.", 
+   a:"softened up", 
+   ja:"彼女は最初にいくつかの簡単な質問を投げてその政治家を<b>和ませた</b>。"},
+  {q:"Sales at the restaurant rose rapidly at first, then gradually ____.", 
+   a:"leveled off", 
+   ja:"そのレストランの売上は最初急激に増加したが、その後次第に<b>横ばいになった</b>。"},
+  {q:"The hot sun caused the grapes to ____.", 
+   a:"shrivel up", 
+   ja:"暑い日差しでぶどうが<b>しなび</b>てしまった。"},
+  {q:"The team lost three matches in a row and ____ the fans ____.", 
+   a:"let down", 
+   ja:"そのチームは３連敗し、ファンを<b>落胆させた</b>。"},
+  {q:"A cycle lane is ____ on the road.", 
+   a:"marked out", 
+   ja:"自転車レーンは路上に<b>線を引いて区切ら</b>れている。"},
+  {q:"The economy will ____ early next year.", 
+   a:"bottom out", 
+   ja:"景気は来年初めに<b>底を打つ</b>だろう。"},
+  {q:"He decided to ____ learning French.", 
+   a:"get down to", 
+   ja:"彼はフランス語の勉強を<b>始める</b>ことにした。"},
+  {q:"We must ____ the unnecessary expenditures.", 
+   a:"trim down", 
+   ja:"私たちは不要な支出を<b>削減し</b>なければならない。"},
+  {q:"He had left his phone on the table, and someone ____ it.", 
+   a:"ran off with", 
+   ja:"彼はテーブルの上に携帯を置き忘れ、何者かがそれを<b>持ち去った</b>。"},
+  {q:"I have been ____ the problem for more than a week.", 
+   a:"puzzling over", 
+   ja:"私は１週間以上その問題に<b>頭を悩ませ</b>ている。"},
+
+  {q:"I’d like to ____ some ideas for further discussion.", 
+   a:"put forward", 
+   ja:"議論を進めるために、いくつかのアイデアを<b>出し(提案し)</b>たいと思います。"},
+  {q:"Misunderstandings often ____ a lack of information.", 
+   a:"stem from", 
+   ja:"誤解はしばしば情報不足から<b>生じる(に由来する)</b>。"},
+  {q:"The news ____ the sports world.", 
+   a:"shook up", 
+   ja:"そのニュースはスポーツ界を<b>揺るがせた</b>。"},
+  {q:"New hotels are ____ in Tokyo.", 
+   a:"springing up", 
+   ja:"東京では新しいホテルが<b>次々と誕生して</b>いる。"},
+  {q:"She ____ in the end and admitted her defeat.", 
+   a:"backed down", 
+   ja:"彼女はようやく<b>引き下がり</b>、敗北を認めた。"},
+  {q:"Japan is ____ huge budget deficits.", 
+   a:"saddled with", 
+   ja:"日本は巨額の財政赤字を<b>抱えている</b>。"},
+  {q:"Most of the homeless have no family to ____.", 
+   a:"fall back on", 
+   ja:"ホームレスの人の多くには<b>頼る</b>ことのできる家族がいない。"},
+  {q:"I wanted to tell him I loved him, but ____, afraid of being rejected.", 
+   a:"held back", 
+   ja:"私は彼に愛していると伝えたかったが、拒絶されるのが怖くて<b>思いとどまった</b>。"},
+  {q:"At the camp, we let the children ____ their own rules.", 
+   a:"lay down", 
+   ja:"キャンプでは子どもたちに自分でルールを<b>定めさせ</b>た。"},
+  {q:"You can buy one now or ____ until an update is released.", 
+   a:"hold off", 
+   ja:"今すぐ買ってもいいし、アップデート版が出るまでは<b>先延ばしにし</b>てもいい。"},
+  {q:"She was ____ for promotion.", 
+   a:"singled out", 
+   ja:"彼女<b>だけが選ば</b>れて昇進した。"},
+  {q:"A speech by the Nobel prize winner will ____ the three-day-long event.", 
+   a:"kick off", 
+   ja:"ノーベル賞受賞者によるスピーチで、３日間にわたるイベントが<b>始まる</b>。"},
+  {q:"The delivery company is ____ for the busy holiday season.", 
+   a:"gearing up", 
+   ja:"その配送会社は、繁忙期の年末年始に向けて<b>準備を進めて</b>いる。"},
+  {q:"She is confident that all of her hard work will ____ someday.", 
+   a:"pay off", 
+   ja:"彼女はすべての努力がいつか<b>報われる</b>と信じている。"}
+  
+    ];
+
+  function shuffle(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  }
+
+  function getOptions(answer) {
+    let opts = [answer];
+    while (opts.length < 4) {
+      let rand = items[Math.floor(Math.random() * items.length)].a;
+      if (!opts.includes(rand)) opts.push(rand);
+    }
+    return shuffle(opts);
+  }
+
+  function render() {
+    const quiz = document.getElementById("quiz");
+    quiz.innerHTML = "";
+    items.forEach((item, idx) => {
+      const div = document.createElement("div");
+      div.className = "question";
+      div.innerHTML = `
+        <p class="sentence"><b>Q${idx+1}.</b> ${item.q}</p>
+        <div class="options">
+          ${getOptions(item.a).map(opt =>
+            `<button onclick="check(this,'${item.a}')">${opt}</button>`
+          ).join("")}
+        </div>
+        <p class="translation" style="display:none;">${item.ja}</p>
+      `;
+      quiz.appendChild(div);
+    });
+  }
+
+  function check(btn, correct) {
+  const parent = btn.parentElement.parentElement;
+  if (btn.textContent === correct) {
+    btn.classList.add("correct");
+    parent.querySelector(".translation").style.display = "block";
+    // 正解が選ばれたら他のボタンも無効化
+    Array.from(btn.parentElement.children).forEach(b => b.disabled = true);
+  } else {
+    btn.classList.add("incorrect");
+    btn.disabled = true; // 間違えたボタンだけ無効化
+  }
+}
+
+  function shuffleQuestions() {
+    shuffle(items);
+    render();
+  }
+
+  function resetQuestions() {
+    items.sort((a,b)=>a.q.localeCompare(b.q));
+    render();
+  }
+
+  render();
+
+
+</script>
+</body>
+</html>
